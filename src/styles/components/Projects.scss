@@ -1,0 +1,313 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif; // Keep for titles
+$font-secondary: "Inter", sans-serif; // Add Inter for main text
+
+// Colors (Assuming reuse from global/Introduction styles)
+$color-background: #fffefb;
+$color-text-main: #000000;
+// New color for project cards
+$color-project-card-bg: #e0e0e0; // Light grey from image - adjust if needed
+$color-tag-border: darken(
+  $color-project-card-bg,
+  15%
+); // Example border for tags
+
+// Font Sizes (Adjust as needed, potentially reuse/derive from global)
+$font-size-project-title: 1.8rem;
+$font-size-project-desc: 1rem;
+$font-size-tag: 0.85rem;
+
+// Font Weights (Assuming reuse)
+$font-weight-bold: 700;
+$font-weight-regular: 400;
+
+// Spacing
+$spacing-unit: 1rem; // Base spacing unit (Assuming reuse)
+$project-row-gap: 6 * $spacing-unit; // Vertical gap between project rows
+$project-card-padding: 2 * $spacing-unit;
+$project-card-gap: 2 * $spacing-unit; // Gap between cards in the double-card row
+$section-horizontal-padding: 5%; // Padding on the sides of the section
+
+// SVG Sizing & Positioning
+$project-svg-container-width-base: 275px; // SVG Width
+$project-svg-overlap-percentage: 55%; // Set overlap percentage
+
+// --- Base Styles ---
+// body { ... }
+
+// --- Projects Section Styles ---
+.projects-section {
+  padding: $project-row-gap $section-horizontal-padding; // Use variable for horizontal padding
+  width: 100%;
+  // max-width: 1600px; // Keep or remove based on desired max content width
+  margin: 0 auto; // Center the section
+  background-color: $color-background; // Ensure background consistency
+  font-family: $font-secondary; // Set base font to Inter for this section
+  color: $color-text-main;
+  overflow: hidden; // Clip overflowing SVGs
+  box-sizing: border-box;
+  position: relative; // Good practice when children are positioned/transformed
+}
+
+// --- Project Row Styles ---
+.project-row {
+  display: flex;
+  // align-items: center; // Default vertical alignment (changed below)
+  margin-bottom: $project-row-gap; // Space between rows
+  width: 100%;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-bottom: 0; // No margin after the last row
+  }
+
+  // Layout for Row 1 (Card | SVG) & Row 2 (SVG | Card)
+  &.project-row-svg-right,
+  &.project-row-svg-left {
+    justify-content: space-between; // Push card and SVG apart
+    // --- Stretch items to match height ---
+    align-items: stretch;
+  }
+
+  // Layout for Row 3 (Card | Card)
+  &.project-row-double-card {
+    justify-content: space-between; // Space out the two cards
+    align-items: stretch; // Also stretch cards in this row for consistency, or set to flex-start
+    gap: $project-card-gap; // Add gap between the two cards
+    padding: 0 $spacing-unit * 2; // Example: Add some inner padding if cards get too close to edge
+  }
+}
+
+// --- Project Card Styles ---
+.project-card {
+  background-color: $color-project-card-bg;
+  padding: $project-card-padding;
+  border-radius: 8px; // Optional: slight rounding
+  flex-grow: 0; // Don't allow cards to grow by default
+  flex-shrink: 1; // Allow cards to shrink if needed
+  box-sizing: border-box;
+  position: relative; // Ensure card stays above SVG if z-index issues arise
+  z-index: 1; // Ensure card is above SVG
+
+  // --- Added Flexbox for internal content positioning ---
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; // Push content to the bottom
+
+  // Width control for different row types
+  .project-row-svg-right &,
+  .project-row-svg-left & {
+    flex-basis: 65%; // Keep increased basis for larger card
+    // Height is now determined by align-items: stretch on the parent row
+  }
+
+  .project-row-double-card & {
+    flex-basis: calc(
+      50% - (#{$project-card-gap} / 2)
+    ); // Each card takes ~half width minus gap
+    max-width: none; // Remove max-width for double cards
+    // Height determined by content unless row align-items is stretch
+    justify-content: flex-start; // Start content at top for double cards (override)
+  }
+}
+
+// --- Card Content Elements ---
+// No changes needed for title, description, tags wrappers usually
+
+.project-title {
+  font-family: $font-primary; // Explicitly set title font to Space Grotesk
+  font-size: $font-size-project-title;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  margin: 0 0 $spacing-unit 0;
+  color: $color-text-main;
+}
+
+.project-description {
+  font-size: $font-size-project-desc;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  margin: $spacing-unit 0 0 0; // Keep margin top
+  color: $color-text-main;
+}
+
+// --- Tag Styles ---
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-unit / 2;
+  margin-bottom: $spacing-unit / 2;
+
+  &.project-tags-tech {
+    margin-top: $spacing-unit / 2; // Add space above tech tags
+  }
+}
+
+.tag {
+  display: inline-block;
+  font-size: $font-size-tag;
+  font-weight: $font-weight-regular;
+  padding: ($spacing-unit / 4) ($spacing-unit / 2);
+  border: 1px solid $color-tag-border; // Example border
+  border-radius: 4px;
+  background-color: transparent;
+  color: $color-text-main;
+
+  &.tag-status {
+  }
+  &.tag-tech {
+  }
+}
+
+// --- SVG Styles (Projects Section specific) ---
+.project-svg-container {
+  flex: 0 0 auto; // Don't grow or shrink
+  width: $project-svg-container-width-base; // Use base width variable
+  height: auto; // Maintain aspect ratio
+  transition: margin 0.3s ease, width 0.3s ease;
+  z-index: 0; // Ensure SVG is behind card content
+
+  // Calculate Negative Margins
+  $negative-margin: $project-svg-container-width-base *
+    ($project-svg-overlap-percentage / 100%);
+
+  // Apply negative margins based on row layout
+  .project-row-svg-right & {
+    // SVG is on the right
+    margin-right: -$negative-margin; // Apply negative margin
+  }
+  .project-row-svg-left & {
+    // SVG is on the left
+    margin-left: -$negative-margin; // Apply negative margin
+  }
+}
+
+.projects-decorative-svg {
+  // Target the SVG specifically within projects
+  display: block;
+  width: 100%;
+  height: auto; // Height is intrinsic based on width and aspect ratio
+  stroke: $color-text-main;
+}
+
+// --- Responsive Adjustments ---
+
+@media (max-width: 1024px) {
+  $project-svg-container-width-medium: 220px;
+  $negative-margin-medium: $project-svg-container-width-medium *
+    ($project-svg-overlap-percentage / 100%);
+
+  .projects-section {
+    padding: $project-row-gap * 0.8 $section-horizontal-padding * 0.9; // Adjust padding
+  }
+
+  .project-row {
+    margin-bottom: $project-row-gap * 0.8;
+
+    // Reset alignment when stacking double cards
+    &.project-row-double-card {
+      flex-direction: column;
+      align-items: center; // Center items horizontally
+      padding: 0; // Reset padding
+      .project-card {
+        flex-basis: auto;
+        width: 80%;
+        max-width: 500px;
+        height: auto; // Ensure height is auto when stacked
+        justify-content: flex-start; // Reset justify-content
+      }
+    }
+  }
+
+  .project-card {
+    .project-row-svg-right &,
+    .project-row-svg-left & {
+      flex-basis: 60%; // Adjust basis for medium screens if needed
+      // Height still determined by align-items: stretch
+    }
+  }
+
+  .project-svg-container {
+    width: $project-svg-container-width-medium; // Apply updated width
+    .project-row-svg-right & {
+      margin-right: -$negative-margin-medium; // Reapply negative margin
+    }
+    .project-row-svg-left & {
+      margin-left: -$negative-margin-medium; // Reapply negative margin
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  $project-svg-container-width-small: 180px;
+
+  .projects-section {
+    padding: ($project-row-gap * 0.7) $spacing-unit * 1.5; // Adjust padding
+  }
+
+  .project-row {
+    flex-direction: column;
+    margin-bottom: $project-row-gap * 0.7;
+    align-items: center; // Center items horizontally when stacked
+
+    &.project-row-svg-right,
+    &.project-row-svg-left,
+    &.project-row-double-card {
+      justify-content: center;
+      padding: 0;
+      gap: $project-card-gap * 1.5; // Increase gap slightly when stacked
+      align-items: center; // Ensure items are centered horizontally
+    }
+  }
+
+  .project-card {
+    flex-basis: auto;
+    width: 90%; // Keep width constrained
+    max-width: 450px;
+    margin: 0 auto;
+    height: auto; // Ensure height is auto when stacked
+    justify-content: flex-start; // Reset justify-content when stacked
+  }
+
+  .project-svg-container {
+    width: $project-svg-container-width-small; // Apply updated width
+    margin: 0 auto; // Center SVG (gap handles spacing)
+
+    // Reset Negative Margins when stacked
+    .project-row-svg-right &,
+    .project-row-svg-left & {
+      margin-left: auto; // Reset margin
+      margin-right: auto; // Reset margin
+    }
+
+    // Order fix for stacked view (SVG first in DOM for row 2)
+    .project-row-svg-left & {
+      order: -1; // Move SVG visually above card when stacked
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  $project-svg-container-width-xsmall: 140px;
+
+  .projects-section {
+    padding: ($project-row-gap * 0.5) $spacing-unit;
+  }
+  .project-row {
+    margin-bottom: $project-row-gap * 0.5;
+  }
+  .project-card {
+    width: 95%;
+    padding: $project-card-padding * 0.8;
+  }
+  .project-title {
+    font-size: $font-size-project-title * 0.8;
+  }
+  .project-description {
+    font-size: $font-size-project-desc * 0.9;
+  }
+  .project-svg-container {
+    width: $project-svg-container-width-xsmall; // Apply updated width
+  }
+}

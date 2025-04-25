@@ -1,69 +1,83 @@
 import React from "react";
-import "../styles/Introduction.css";
+import "../styles/components/Introduction.scss"; // Import SCSS file
 
 export default function Introduction() {
-  return (
-    <div className="introduction" id="home">
-      <div className="introduction-content">
-        <div className="introduction-text">
-          <div className="headings-wrapper">
-            <h1>VIBHISHAN RANGA</h1>
-            <h1 className="h1-second">DEVELOPER;</h1>
-            <h1>DESIGNER.</h1>
-          </div>
-        </div>
+  // Replicated SVG component for clarity (could be imported)
+  const DecorativeSvg = () => (
+    <svg
+      className="intro-decorative-svg" // Added class for styling
+      // width="359" // Control size via CSS instead
+      // height="525"
+      viewBox="0 0 359 525"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet" // Helps with scaling
+    >
+      {/* SVG paths remain the same */}
+      <path
+        d="M147.422 147.421L147.422 17L17.0005 147.421L147.422 147.421Z"
+        stroke="currentColor" // Use currentColor to inherit color
+        strokeWidth="13.593"
+      />
+      <path
+        d="M147.421 147.421L17 17L49.6053 49.6053L82.2107 82.2107"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M147.422 327.734L147.422 197.312L17.0005 327.734L147.422 327.734Z"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M147.421 327.734L17 197.312L49.6053 229.918L82.2107 262.523"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M212.162 197.313L212.162 327.734L342.583 197.313L212.162 197.313Z"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M212.163 197.313L342.584 327.734L309.979 295.129L277.373 262.524"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M212.162 377.626L212.162 508.047L342.583 377.626L212.162 377.626Z"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+      <path
+        d="M212.163 377.626L342.584 508.047L309.979 475.442L277.373 442.836"
+        stroke="currentColor"
+        strokeWidth="13.593"
+      />
+    </svg>
+  );
 
-        <div className="introduction-image">
-          <svg
-            width="412"
-            height="593"
-            viewBox="0 0 412 593"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M170.426 170.61L170.426 27.9059L27.7221 170.61L170.426 170.61Z"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M170.426 170.609L27.7227 27.9055L63.3986 63.5814L99.0745 99.2573"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M386.168 367.903L386.168 225.2L243.464 367.903L386.168 367.903Z"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M386.169 367.903L243.465 225.199L279.141 260.875L314.817 296.551"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M27.7207 225.199L27.7207 367.902L170.424 225.199L27.7207 225.199Z"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M27.7202 225.199L170.424 367.903L134.748 332.227L99.072 296.551"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M241.26 422.492L241.26 565.196L383.963 422.492L241.26 422.492Z"
-              stroke="black"
-              stroke-width="22.87"
-            />
-            <path
-              d="M241.259 422.493L383.963 565.197L348.287 529.521L312.611 493.845"
-              stroke="black"
-              stroke-width="22.87"
-            />
-          </svg>
-        </div>
+  return (
+    // Use a section element for semantic structure
+    <section className="introduction-section">
+      {/* Container for the left SVG */}
+      <div className="intro-svg-container intro-svg-left">
+        <DecorativeSvg />
       </div>
-    </div>
+
+      {/* Container for the central text content */}
+      <div className="intro-text-content">
+        {/* Use h1 for the main name */}
+        <h1 className="intro-name">Vibhishan Ranga</h1>
+        {/* Use h2 for the description */}
+        <h1 className="intro-title">Developer; Designer.</h1>
+      </div>
+
+      {/* Container for the right SVG */}
+      <div className="intro-svg-container intro-svg-right">
+        {/* You might need to flip this SVG horizontally if it should mirror the left one */}
+        <DecorativeSvg />
+      </div>
+    </section>
   );
 }

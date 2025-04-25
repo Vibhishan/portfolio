@@ -1,0 +1,204 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif; // Make sure to import/load this font
+
+// Colors
+$color-background: #fffefb;
+$color-text-main: #000000;
+$color-accent-blue: #4a90e2; // Placeholder blue for underline - adjust as needed
+
+// Font Sizes (adjust as needed)
+$font-size-h1: 5.5rem; // Example size
+$font-size-h2: 4rem; // Example size
+
+// Font Weights (adjust based on Space Grotesk availability)
+$font-weight-bold: 700;
+$font-weight-semibold: 600;
+$font-weight-regular: 400;
+
+// Spacing
+$spacing-unit: 1rem; // Base spacing unit
+
+// --- Navbar Height ---
+$navbar-height: 60px; // !!! IMPORTANT: Adjust this value to your actual navbar height !!!
+
+// SVG Sizing & Positioning
+$svg-container-width-base: 275px; // Current SVG width
+$svg-overlap-percentage: 55%; // User's current overlap percentage
+$svg-vertical-shift: 90px; // User's current vertical shift
+
+// --- Base Styles ---
+// body { ... } // Optional body styles
+
+// --- Component Styles ---
+.introduction-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh; // Changed to full viewport height
+  padding-top: calc(
+    #{$navbar-height} + 2 * #{$spacing-unit}
+  ); // Add navbar height to top padding
+  width: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-bottom: 2 * $spacing-unit;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background-color: $color-background;
+  font-family: $font-primary;
+  color: $color-text-main;
+  overflow: hidden;
+  position: relative;
+}
+
+.intro-text-content {
+  text-align: center;
+  flex-grow: 1; // Allow text content to take available space
+}
+
+.intro-name {
+  // Styles for "Vibhishan Ranga" (h1)
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  margin: 0 0 ($spacing-unit / 2) 0;
+  color: $color-text-main;
+  position: relative;
+  display: inline-block;
+}
+
+.intro-title {
+  // Styles for "Developer; Designer." (h2)
+  // --- Adjusted font size based on user's code ---
+  font-size: $font-size-h1; // User had this set same as h1
+  font-weight: $font-weight-bold; // User had this set same as h1
+  text-transform: uppercase;
+  margin: 0;
+  color: $color-text-main;
+  letter-spacing: 0.05em;
+}
+
+// --- SVG Styles ---
+.intro-svg-container {
+  flex: 0 0 auto; // Don't grow or shrink
+  width: $svg-container-width-base; // Use base width variable
+  height: auto; // Maintain aspect ratio
+  transition: margin 0.3s ease, width 0.3s ease, transform 0.3s ease;
+
+  // Calculate negative margin based on the container's own width and the overlap percentage
+  $negative-margin: $svg-container-width-base * ($svg-overlap-percentage / 100%);
+
+  &.intro-svg-left {
+    margin-left: -$negative-margin; // Apply negative left margin
+    transform: translateY($svg-vertical-shift); // Move down
+  }
+  &.intro-svg-right {
+    margin-right: -$negative-margin; // Apply negative right margin
+    transform: translateY(-$svg-vertical-shift); // Move up
+
+    // If the right SVG needs to be mirrored:
+    // transform: scaleX(-1) translateY(-$svg-vertical-shift); // Combine transforms if needed
+  }
+}
+
+.intro-decorative-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  stroke: $color-text-main;
+}
+
+// --- Responsive Adjustments ---
+
+// Medium Screens / Tablets
+@media (max-width: 1024px) {
+  // --- SVG container width for medium screens ---
+  $svg-container-width-medium: 160px;
+  // Recalculate negative margin for this breakpoint using the updated overlap percentage
+  $negative-margin-medium: $svg-container-width-medium *
+    ($svg-overlap-percentage / 100%);
+  // Optionally adjust vertical shift for medium screens
+  $svg-vertical-shift-medium: $svg-vertical-shift * 0.8; // Example: reduce shift slightly
+
+  .introduction-section {
+    padding: 2 * $spacing-unit 4%;
+    // Keep full height calculation
+    min-height: calc(100vh - #{$navbar-height});
+    // Margin is already 0 auto
+  }
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.8);
+  }
+  .intro-title {
+    font-size: calc(#{$font-size-h1} * 0.8); // Adjust based on h1 size
+  }
+  .intro-svg-container {
+    width: $svg-container-width-medium;
+    &.intro-svg-left {
+      margin-left: -$negative-margin-medium;
+      transform: translateY($svg-vertical-shift-medium); // Apply adjusted shift
+    }
+    &.intro-svg-right {
+      margin-right: -$negative-margin-medium;
+      transform: translateY(
+        -$svg-vertical-shift-medium
+      ); // Apply adjusted shift
+    }
+  }
+}
+
+// Small Screens / Mobiles
+@media (max-width: 768px) {
+  // --- SVG container width for small screens ---
+  $svg-container-width-small: 130px;
+
+  .introduction-section {
+    flex-direction: column; // Stack elements vertically
+    justify-content: center; // Center content vertically in the available space
+    min-height: calc(100vh - #{$navbar-height}); // Keep full height
+    text-align: center;
+    padding: 2 * $spacing-unit 5%;
+    width: 100%; // Use full width even when stacked
+    margin: 0 auto; // Keep margin settings
+  }
+  .intro-svg-container {
+    width: $svg-container-width-small;
+    margin: 2 * $spacing-unit 0; // Use vertical margin, reset horizontal/negative margins
+
+    &.intro-svg-left,
+    &.intro-svg-right {
+      margin-left: auto;
+      margin-right: auto;
+      transform: translateY(0); // Reset vertical shift when stacked
+    }
+  }
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.6);
+  }
+  .intro-title {
+    font-size: calc(#{$font-size-h1} * 0.6); // Adjust based on h1 size
+  }
+}
+
+// Extra Small Screens
+@media (max-width: 480px) {
+  // --- SVG container width for extra small screens ---
+  $svg-container-width-xsmall: 105px;
+
+  .introduction-section {
+    padding: $spacing-unit 3%;
+    // Keep full height calculation
+    min-height: calc(100vh - #{$navbar-height});
+  }
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.5);
+  }
+  .intro-title {
+    font-size: calc(#{$font-size-h1} * 0.5); // Adjust based on h1 size
+  }
+  .intro-svg-container {
+    width: $svg-container-width-xsmall;
+    // transform is already reset from 768px breakpoint
+  }
+}

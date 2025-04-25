@@ -1,0 +1,177 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif;
+$font-secondary: "Inter", sans-serif;
+
+// Colors
+$color-background: #fffefb;
+$color-text-main: #000000;
+$color-arrow: $color-text-main; // Color for the long arrow
+
+// Font Sizes
+$font-size-experience-title: 1.1rem;
+$font-size-experience-company: 1rem;
+$font-size-experience-dates: 0.9rem;
+
+// Font Weights
+$font-weight-bold: 700;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+
+// Spacing
+$spacing-unit: 1rem;
+$experience-section-padding-y: 8 * $spacing-unit;
+$experience-section-padding-x: 5%;
+$timeline-content-gap: 1.5 * $spacing-unit; // Vertical gap between arrow and content
+$stacked-point-gap: 4 * $spacing-unit;
+
+// Arrow Style
+$arrow-height: 20px; // Corresponds to viewBox height of LongArrowSvg
+$arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
+
+// --- Experience Section Styles ---
+.experience-section {
+  padding: $experience-section-padding-y $experience-section-padding-x;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $color-background;
+  font-family: $font-secondary;
+  color: $color-text-main;
+  box-sizing: border-box;
+}
+
+// --- Timeline Container (Long Arrow Version) ---
+.timeline-container-long-arrow {
+  position: relative; // Context for the absolutely positioned arrow
+  width: 100%;
+  // Use Flexbox to distribute points horizontally
+  display: flex;
+  justify-content: space-between;
+  // --- Removed vertical padding ---
+  // padding-top: calc(#{$arrow-height / 2} + #{$timeline-content-gap});
+  // padding-bottom: calc(#{$arrow-height / 2} + #{$timeline-content-gap});
+  // Add padding to ensure arrow isn't cut off if it has thickness/height
+  padding: ($arrow-height / 2) 0;
+}
+
+// --- Long Arrow Container & SVG ---
+.long-arrow-container {
+  position: absolute;
+  top: 50%;
+  left: 0; // Let it span the container
+  right: 0;
+  transform: translateY(-50%); // Center it vertically
+  height: $arrow-height; // Give container height for positioning SVG
+  z-index: 0; // Behind content
+  pointer-events: none; // Prevent arrow from interfering with interactions
+  padding: 0 $spacing-unit * 2; // Match horizontal padding of points if needed
+  box-sizing: border-box;
+}
+
+.long-arrow-svg {
+  display: block;
+  width: 100%;
+  height: 100%; // Fill the container height
+  color: $color-arrow; // Set arrow color
+}
+
+// --- Timeline Points ---
+.timeline-point {
+  padding: 0 $spacing-unit * 2; // Horizontal padding around each point
+  box-sizing: border-box;
+  width: 33.33%; // Distribute width evenly
+  position: relative; // Keep relative for z-index and potential future use
+  z-index: 1; // Ensure point is above arrow
+
+  // --- Removed vertical padding and flex alignment helpers ---
+  // &.timeline-point-above { ... }
+  // &.timeline-point-below { ... }
+}
+
+// --- Timeline Content (Text) ---
+.timeline-content {
+  box-sizing: border-box;
+  width: 100%; // Take width of parent point container
+  text-align: left; // Ensure all text is left-aligned
+  position: relative; // Needed for transform
+
+  // --- Use transform to position content relative to the arrow line ---
+  .timeline-point-above & {
+    // Calculate upward shift: half arrow height + desired gap
+    transform: translateY(
+      calc(-0% - (#{$arrow-height} / 2) - #{$timeline-content-gap})
+    );
+    // Position bottom edge relative to the point's default top
+    bottom: 0; // Aligns bottom of text block with where top usually is
+  }
+
+  .timeline-point-below & {
+    // Calculate downward shift: half arrow height + desired gap
+    transform: translateY(
+      calc((#{$arrow-height} / 2) + #{$timeline-content-gap})
+    );
+    // Position top edge relative to the point's default top (default)
+  }
+}
+
+// --- Text Element Styles ---
+.experience-title {
+  font-family: $font-primary;
+  font-size: $font-size-experience-title;
+  font-weight: $font-weight-bold;
+  margin: 0 0 ($spacing-unit / 4) 0;
+  text-transform: uppercase;
+}
+
+.experience-company {
+  font-size: $font-size-experience-company;
+  font-weight: $font-weight-medium;
+  margin: 0 0 ($spacing-unit / 4) 0;
+  color: $color-text-main;
+}
+
+.experience-dates {
+  font-size: $font-size-experience-dates;
+  font-weight: $font-weight-regular;
+  color: darken($color-text-main, 20%);
+  margin: 0;
+}
+
+// --- Responsive Adjustments ---
+
+@media (max-width: 768px) {
+  .experience-section {
+    padding: ($experience-section-padding-y * 0.6) $spacing-unit;
+  }
+
+  .timeline-container-long-arrow {
+    display: block; // Stack points vertically
+    padding: 0; // Reset padding
+  }
+
+  .long-arrow-container {
+    display: none; // Hide the arrow on small screens
+  }
+
+  .timeline-point {
+    width: 100%; // Take full width
+    padding: 0; // Reset padding
+    margin-bottom: $stacked-point-gap;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .timeline-content {
+    text-align: left !important; // Ensure left alignment
+    transform: none !important; // Reset transform when stacked
+    position: static; // Reset position
+
+    // Reset padding overrides (though they were removed from parent)
+    .timeline-point-above &,
+    .timeline-point-below & {
+      padding: 0;
+    }
+  }
+}

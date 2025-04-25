@@ -1,0 +1,90 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Inter", sans-serif;
+
+// Colors
+$color-background: #fffefb;
+$color-text: #333333;
+$color-border: #333333;
+
+// Spacing
+$spacing-unit: 1rem;
+$navbar-padding-horizontal: 1.5rem;
+$navbar-padding-vertical: 0.5rem;
+
+// Sizes
+$navbar-height: 60px;
+$logo-width: 50px;
+$logo-height: 40px;
+$button-padding-horizontal: 1rem;
+$button-padding-vertical: 0.4rem;
+
+// Transitions
+$transition-duration: 0.3s;
+$transition-timing: ease;
+
+// --- Component Styles ---
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $navbar-padding-vertical $navbar-padding-horizontal;
+  background-color: $color-background;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: none;
+  height: $navbar-height;
+  font-family: $font-primary;
+}
+
+// --- Logo Styles ---
+.navbar-logo {
+  cursor: pointer;
+
+  .logo-svg {
+    width: $logo-width;
+    height: $logo-height;
+    transition: transform $transition-duration $transition-timing;
+  }
+
+  &:hover .logo-svg {
+    transform: scale(1.05);
+  }
+}
+
+// --- Text Styles ---
+.navbar-text {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.2px;
+  color: $color-text;
+}
+
+// --- Button Styles ---
+.cv-button {
+  background-color: transparent;
+  color: $color-text;
+  border: 1.5px solid $color-border;
+  border-radius: 4px;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-duration $transition-timing;
+  letter-spacing: 0.5px;
+  outline: none;
+
+  &:hover {
+    background-color: $color-text;
+    color: $color-background;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,262 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif;
+$font-secondary: "Inter", sans-serif;
+
+// Colors
+$color-background: #fffefb; // Main page background
+$color-text-main: #000000;
+$color-contact-container-bg: #e0e0e0; // Light grey for content container
+$color-footer-bg: #cccccc; // Slightly darker grey for footer (adjust as needed)
+$color-svg-pattern: $color-text-main; // Color for the background SVG strokes
+
+// Font Sizes
+$font-size-contact-title: 2.5rem;
+$font-size-contact-subtitle: 1.2rem;
+$font-size-contact-text: 1rem;
+$font-size-contact-email: 1.1rem;
+$font-size-footer: 0.9rem;
+
+// Font Weights
+$font-weight-bold: 700;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+
+// Spacing
+$spacing-unit: 1rem;
+$contact-section-padding-y: 6 * $spacing-unit;
+// $contact-section-padding-x: 5%; // Removed, handled by container widths
+$contact-container-padding: 3 * $spacing-unit;
+$footer-padding: 1.5 * $spacing-unit;
+$social-icon-size: 30px;
+$social-icon-gap: 1.5 * $spacing-unit;
+// $svg-overflow-amount: 10%; // Removed, using fixed wider width now
+$svg-background-width: 120vw; // Make SVG wider than viewport
+
+// --- Contact Section Styles ---
+.contact-section {
+  position: relative; // Context for absolute background
+  padding: $contact-section-padding-y 0; // Vertical padding only
+  background-color: $color-background; // Base background
+  font-family: $font-secondary;
+  color: $color-text-main;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center children (content container, footer) horizontally
+  min-height: 100vh; // Ensure section takes at least full viewport height
+  // --- IMPORTANT: Apply overflow-x: hidden globally (e.g., on body/html) ---
+  // Do NOT apply overflow-x: hidden here if you want SVG to bleed visually
+}
+
+// --- Background SVG Layer ---
+.contact-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  // --- Center horizontally and make wider ---
+  left: 50%;
+  transform: translateX(-50%);
+  width: $svg-background-width; // Wider than viewport
+  height: 100%; // Cover full section height
+  z-index: 0; // Behind content
+  pointer-events: none; // Prevent interaction
+  overflow: hidden; // Hide SVG parts outside this layer's bounds
+}
+
+.contact-background-svg {
+  display: block;
+  // --- Adjust width/height relative to its container ---
+  // Use min-width/min-height and object-fit if needed, depending on SVG content
+  width: 100%;
+  height: 100%;
+  color: $color-svg-pattern;
+  opacity: 0.15; // Make pattern subtle (adjust as needed)
+  // --- Adjust preserveAspectRatio for desired tiling/scaling ---
+  // 'none' might distort, 'xMidYMid slice' will cover but crop
+  preserveaspectratio: xMidYMid slice;
+}
+
+// --- Main Content Container ---
+.contact-content-container {
+  position: relative; // Keep in normal flow but establish context
+  z-index: 1; // Above background
+  background-color: $color-contact-container-bg;
+  padding: $contact-container-padding;
+  border-radius: 10px; // Optional rounding
+  // --- Set width to 85% ---
+  width: 85%;
+  max-width: 1100px; // Adjust max-width if needed for 85%
+  text-align: center; // Center text elements within
+  margin-bottom: 4 * $spacing-unit; // Add some space above footer
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); // Optional subtle shadow
+  flex-shrink: 0; // Prevent shrinking vertically
+}
+
+.contact-title {
+  font-family: $font-primary; // Use Space Grotesk
+  font-size: $font-size-contact-title;
+  font-weight: $font-weight-bold;
+  margin: 0 0 $spacing-unit 0;
+  text-transform: uppercase; // Optional
+}
+
+.contact-subtitle {
+  font-size: $font-size-contact-subtitle;
+  font-weight: $font-weight-regular;
+  line-height: 1.6;
+  margin: 0 auto ($spacing-unit * 2) auto; // Center horizontally with auto margins
+  max-width: 90%; // Keep subtitle from getting too wide
+  color: darken($color-text-main, 15%); // Slightly muted
+}
+
+.contact-details {
+  margin-top: $spacing-unit * 2;
+}
+
+.contact-text {
+  font-size: $font-size-contact-text;
+  margin: $spacing-unit 0;
+  line-height: 1.5;
+}
+
+.contact-email {
+  display: inline-block; // Allow margin/padding
+  font-size: $font-size-contact-email;
+  font-weight: $font-weight-medium;
+  color: $color-text-main;
+  text-decoration: none; // Remove underline
+  border-bottom: 2px solid $color-text-main; // Add custom underline
+  padding-bottom: 2px;
+  margin: $spacing-unit 0 ($spacing-unit * 2) 0;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+// --- Social Icons ---
+.social-icons {
+  margin-top: $spacing-unit * 2.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $social-icon-gap;
+}
+
+.social-link {
+  display: inline-block; // Needed for transform
+  transition: transform 0.2s ease;
+  line-height: 0; // Prevent extra space below image
+
+  &:hover {
+    transform: scale(1.1); // Slight zoom on hover
+  }
+}
+
+.social-icon {
+  width: $social-icon-size;
+  height: $social-icon-size;
+  display: block; // Remove extra space
+}
+
+// --- Footer ---
+.contact-footer {
+  position: relative; // Keep in flow but allow z-index if needed
+  z-index: 1; // Above background
+  background-color: $color-footer-bg;
+  padding: $footer-padding;
+  // --- Set width to 85% ---
+  width: 85%;
+  max-width: 1100px; // Match content container max-width if desired
+  // --- Push footer to bottom ---
+  margin-top: auto;
+  // --- Remove bottom margin to prevent scroll ---
+  // margin-bottom: $contact-section-padding-y;
+  box-sizing: border-box; // Include padding in width
+  text-align: center;
+  border-radius: 8px; // Optional rounding
+}
+
+.footer-text {
+  font-size: $font-size-footer;
+  color: darken($color-text-main, 30%); // Muted text color
+  margin: 0;
+}
+
+// --- Responsive Adjustments ---
+
+@media (max-width: 1024px) {
+  .contact-content-container,
+  .contact-footer {
+    width: 90%; // Adjust width for tablets
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: ($contact-section-padding-y * 0.7) 0; // Adjust padding
+    min-height: unset; // Allow height to be determined by content on mobile
+  }
+
+  .contact-content-container,
+  .contact-footer {
+    width: 90%; // Keep wider width
+  }
+  .contact-content-container {
+    padding: $contact-container-padding * 0.8;
+    margin-bottom: 3 * $spacing-unit; // Add back some margin when not using sticky footer
+  }
+
+  .contact-title {
+    font-size: $font-size-contact-title * 0.8;
+  }
+  .contact-subtitle {
+    font-size: $font-size-contact-subtitle * 0.9;
+  }
+  .contact-background {
+    // Adjust width if needed
+    width: 150vw; // Example: Less extreme overflow on smaller screens
+  }
+  .contact-footer {
+    margin-top: 0; // Reset margin-top when not sticky
+    // Add bottom padding matching section top padding
+    margin-bottom: $contact-section-padding-y * 0.7;
+  }
+}
+
+@media (max-width: 480px) {
+  $social-icon-size-small: 25px;
+  $social-icon-gap-small: $spacing-unit;
+
+  .contact-content-container,
+  .contact-footer {
+    width: 95%; // Almost full width on very small screens
+  }
+  .contact-content-container {
+    padding: $contact-container-padding * 0.7;
+  }
+  .contact-title {
+    font-size: $font-size-contact-title * 0.7;
+  }
+  .contact-subtitle {
+    font-size: $font-size-contact-subtitle * 0.8;
+  }
+  .social-icons {
+    gap: $social-icon-gap-small;
+  }
+  .social-icon {
+    width: $social-icon-size-small;
+    height: $social-icon-size-small;
+  }
+  .contact-footer {
+    padding: $footer-padding * 0.8;
+  }
+  .footer-text {
+    font-size: $font-size-footer * 0.9;
+  }
+  .contact-background {
+    width: 180vw; // Example: Even wider relative overflow on small screens might look ok
+  }
+}
