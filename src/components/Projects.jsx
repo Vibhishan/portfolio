@@ -63,7 +63,7 @@ export default function Projects() {
       {/* Row 1: Project Card Left, SVG Right */}
       <div className="project-row project-row-svg-right">
         {/* Project Card 1 */}
-        <div className="project-card">
+        <div className="project-card project-card-1">
           <h3 className="project-title">Hangman</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
@@ -100,7 +100,7 @@ export default function Projects() {
           <DecorativeSvg />
         </div>
         {/* Project Card 2 */}
-        <div className="project-card">
+        <div className="project-card project-card-2">
           <h3 className="project-title">Minimal Sketch</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
@@ -128,7 +128,7 @@ export default function Projects() {
       {/* Row 3: Two Project Cards Side-by-Side */}
       <div className="project-row project-row-double-card">
         {/* Project Card 3 */}
-        <div className="project-card">
+        <div className="project-card project-card-3">
           <h3 className="project-title">Book-My-Show</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
@@ -148,7 +148,7 @@ export default function Projects() {
           {/* <a href="#" className="project-link">▷</a> */}
         </div>
         {/* Project Card 4 */}
-        <div className="project-card">
+        <div className="project-card project-card-4">
           <h3 className="project-title">Tic-Tac-Toe</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">

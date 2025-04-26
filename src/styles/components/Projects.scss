@@ -7,11 +7,12 @@ $font-secondary: "Inter", sans-serif; // Add Inter for main text
 $color-background: #fffefb;
 $color-text-main: #000000;
 // New color for project cards
-$color-project-card-bg: #e0e0e0; // Light grey from image - adjust if needed
-$color-tag-border: darken(
+$color-project-card-bg: #111111; // Changed to dark background
+$color-project-card-text: #fffefb; // Added light text color
+$color-tag-border: lighten(
   $color-project-card-bg,
-  15%
-); // Example border for tags
+  20%
+); // Lightened border for dark background
 
 // Font Sizes (Adjust as needed, potentially reuse/derive from global)
 $font-size-project-title: 1.8rem;
@@ -83,12 +84,14 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
 .project-card {
   background-color: $color-project-card-bg;
   padding: $project-card-padding;
-  border-radius: 8px; // Optional: slight rounding
-  flex-grow: 0; // Don't allow cards to grow by default
-  flex-shrink: 1; // Allow cards to shrink if needed
+  border-radius: 8px;
+  flex-grow: 0;
+  flex-shrink: 1;
   box-sizing: border-box;
-  position: relative; // Ensure card stays above SVG if z-index issues arise
-  z-index: 1; // Ensure card is above SVG
+  position: relative;
+  z-index: 1;
+  color: $color-project-card-text;
+  transition: background-color 0.3s ease; // Add smooth transition
 
   // --- Added Flexbox for internal content positioning ---
   display: flex;
@@ -110,6 +113,23 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
     // Height determined by content unless row align-items is stretch
     justify-content: flex-start; // Start content at top for double cards (override)
   }
+
+  // Hover effects for each project card
+  &.project-card-1:hover {
+    background-color: #5da271;
+  }
+
+  &.project-card-2:hover {
+    background-color: #3772ff;
+  }
+
+  &.project-card-3:hover {
+    background-color: #fb6376;
+  }
+
+  &.project-card-4:hover {
+    background-color: #7d387d;
+  }
 }
 
 // --- Card Content Elements ---
@@ -121,7 +141,7 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   font-weight: $font-weight-bold;
   text-transform: uppercase;
   margin: 0 0 $spacing-unit 0;
-  color: $color-text-main;
+  color: $color-project-card-text; // Updated to light text
 }
 
 .project-description {
@@ -129,7 +149,7 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   font-weight: $font-weight-regular;
   line-height: 1.6;
   margin: $spacing-unit 0 0 0; // Keep margin top
-  color: $color-text-main;
+  color: $color-project-card-text; // Updated to light text
 }
 
 // --- Tag Styles ---
@@ -152,7 +172,7 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   border: 1px solid $color-tag-border; // Example border
   border-radius: 4px;
   background-color: transparent;
-  color: $color-text-main;
+  color: $color-project-card-text; // Updated to light text
 
   &.tag-status {
   }
