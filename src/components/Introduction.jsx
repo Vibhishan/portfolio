@@ -4,17 +4,25 @@ import "../styles/components/Introduction.scss"; // Import SCSS file
 export default function Introduction() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTextVisible, setIsTextVisible] = useState(false);
+  const [isScrollArrowsVisible, setIsScrollArrowsVisible] = useState(false);
 
   useEffect(() => {
     // Start the SVG animations
     setIsVisible(true);
 
     // After SVG animations complete, show the text
-    const timer = setTimeout(() => {
+    const textTimer = setTimeout(() => {
       setIsTextVisible(true);
+
+      // After text is visible, show the scroll arrows
+      const arrowTimer = setTimeout(() => {
+        setIsScrollArrowsVisible(true);
+      }, 500); // 500ms after text appears
+
+      return () => clearTimeout(arrowTimer);
     }, 1000); // Adjust timing to match SVG animation duration
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(textTimer);
   }, []);
 
   // Replicated SVG component for clarity (could be imported)
@@ -72,6 +80,25 @@ export default function Introduction() {
     </svg>
   );
 
+  // Scroll down arrow SVG
+  const ScrollArrow = () => (
+    <svg
+      width="30"
+      height="15"
+      viewBox="0 0 40 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2 2L20 18L38 2"
+        stroke="#111111"
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   return (
     // Use a section element for semantic structure
     <section className="introduction-section">
@@ -100,6 +127,23 @@ export default function Introduction() {
       >
         {/* You might need to flip this SVG horizontally if it should mirror the left one */}
         <DecorativeSvg />
+      </div>
+
+      {/* Scroll down indicator */}
+      <div
+        className={`scroll-down-indicator ${
+          isScrollArrowsVisible ? "visible" : "hidden"
+        }`}
+      >
+        <div className="scroll-arrow scroll-arrow-1">
+          <ScrollArrow />
+        </div>
+        <div className="scroll-arrow scroll-arrow-2">
+          <ScrollArrow />
+        </div>
+        <div className="scroll-arrow scroll-arrow-3">
+          <ScrollArrow />
+        </div>
       </div>
     </section>
   );

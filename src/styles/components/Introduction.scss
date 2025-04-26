@@ -27,6 +27,10 @@ $svg-container-width-base: 275px; // Current SVG width
 $svg-overlap-percentage: 55%; // User's current overlap percentage
 $svg-vertical-shift: 30px; // User's current vertical shift
 
+// Animation Timing
+$arrow-animation-duration: 2s;
+$arrow-animation-delay-factor: 0.3s;
+
 // --- Base Styles ---
 // body { ... } // Optional body styles
 
@@ -140,6 +144,58 @@ $svg-vertical-shift: 30px; // User's current vertical shift
   stroke: $color-text-main;
 }
 
+// --- Scroll Down Indicator ---
+.scroll-down-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px; // Reduced gap between arrows
+  z-index: 10;
+  transition: opacity 0.5s ease;
+
+  &.visible {
+    opacity: 1;
+  }
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.scroll-arrow {
+  animation: fadeInOut $arrow-animation-duration infinite ease-in-out;
+  line-height: 0; // Remove any extra space
+
+  &.scroll-arrow-1 {
+    animation-delay: 0s;
+  }
+
+  &.scroll-arrow-2 {
+    animation-delay: $arrow-animation-delay-factor;
+  }
+
+  &.scroll-arrow-3 {
+    animation-delay: $arrow-animation-delay-factor * 2;
+  }
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(3px); // Reduced movement
+  }
+}
+
 // --- Responsive Adjustments ---
 
 // Medium Screens / Tablets
@@ -209,6 +265,10 @@ $svg-vertical-shift: 30px; // User's current vertical shift
   }
   .intro-title {
     font-size: calc(#{$font-size-h1} * 0.6); // Adjust based on h1 size
+  }
+
+  .scroll-down-indicator {
+    bottom: 20px; // Adjust position for mobile
   }
 }
 

@@ -529,7 +529,7 @@ export default function Contact() {
             {/* Placeholder URLs - replace with actual profile links */}
             {/* Placeholder Image Paths - ensure these exist or use icon library */}
             <a
-              href="#"
+              href="https://www.linkedin.com/in/vibhishan-ranga/"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -542,7 +542,7 @@ export default function Contact() {
               />
             </a>
             <a
-              href="#"
+              href="https://github.com/Vibhishan"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -555,7 +555,7 @@ export default function Contact() {
               />
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/vibhishan.ranga/"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -568,7 +568,7 @@ export default function Contact() {
               />
             </a>
             <a
-              href="#"
+              href="https://x.com/vibhishan_ranga/"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -581,7 +581,7 @@ export default function Contact() {
               />
             </a>
             <a
-              href="#"
+              href="https://discord.gg/ymPayD59"
               target="_blank"
               rel="noopener noreferrer"
               className="social-link"
@@ -601,8 +601,15 @@ export default function Contact() {
       <footer className="contact-footer">
         <p className="footer-text">
           {/* Example Footer Text */}
-          Designed by Amoghavarsha Rao & Built by Vibhishan Ranga &copy;{" "}
-          {new Date().getFullYear()}
+          Designed by{" "}
+          <a
+            href="https://amoghavarsharao.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Amoghavarsha Rao
+          </a>{" "}
+          & Built by Vibhishan Ranga &copy; {new Date().getFullYear()}
         </p>
       </footer>
     </section>

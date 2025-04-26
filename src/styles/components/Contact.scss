@@ -64,7 +64,7 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   display: flex;
   width: 300%; // Double width to hold two SVGs
   // height: 100%;
-  animation: scrollPattern 30s linear infinite; // Adjust speed here
+  animation: scrollPattern 40s linear infinite; // Adjust speed here
 }
 
 .infinite-pattern > svg {
@@ -210,6 +210,18 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   font-size: $font-size-footer;
   color: $color-contact-text; // Updated to light text
   margin: 0;
+
+  a {
+    color: $color-contact-text;
+    text-decoration: none;
+    border-bottom: 1px solid $color-contact-text;
+    padding-bottom: 1px;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 }
 
 // --- Responsive Adjustments ---
