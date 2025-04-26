@@ -536,6 +536,7 @@ export default function Contact() {
                 src="/images/social/linkedin.svg"
                 alt="LinkedIn"
                 className="social-icon"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </a>
             <a
@@ -548,6 +549,7 @@ export default function Contact() {
                 src="/images/social/github.svg"
                 alt="GitHub"
                 className="social-icon"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </a>
             <a
@@ -560,6 +562,7 @@ export default function Contact() {
                 src="/images/social/instagram.svg"
                 alt="Instagram"
                 className="social-icon"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </a>
             <a
@@ -572,6 +575,7 @@ export default function Contact() {
                 src="/images/social/twitter.svg"
                 alt="Twitter"
                 className="social-icon"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </a>
             <a
@@ -584,6 +588,7 @@ export default function Contact() {
                 src="/images/social/discord.svg"
                 alt="Discord"
                 className="social-icon"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </a>
           </div>
