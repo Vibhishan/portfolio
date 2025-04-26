@@ -72,9 +72,7 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   height: 100%;
   color: $color-svg-pattern;
   opacity: 0.15; // Make pattern subtle (adjust as needed)
-  // --- Adjust preserveAspectRatio for desired tiling/scaling ---
-  // 'none' might distort, 'xMidYMid slice' will cover but crop
-  preserveaspectratio: xMidYMid slice;
+  -webkit-preserveaspectratio: xMidYMid slice;
 }
 
 // --- Main Content Container ---

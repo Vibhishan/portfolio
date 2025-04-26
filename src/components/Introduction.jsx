@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/components/Introduction.scss"; // Import SCSS file
 
 export default function Introduction() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isTextVisible, setIsTextVisible] = useState(false);
+
+  useEffect(() => {
+    // Start the SVG animations
+    setIsVisible(true);
+
+    // After SVG animations complete, show the text
+    const timer = setTimeout(() => {
+      setIsTextVisible(true);
+    }, 1000); // Adjust timing to match SVG animation duration
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Replicated SVG component for clarity (could be imported)
   const DecorativeSvg = () => (
     <svg
@@ -61,12 +76,16 @@ export default function Introduction() {
     // Use a section element for semantic structure
     <section className="introduction-section">
       {/* Container for the left SVG */}
-      <div className="intro-svg-container intro-svg-left">
+      <div
+        className={`intro-svg-container intro-svg-left ${
+          isVisible ? "visible" : ""
+        }`}
+      >
         <DecorativeSvg />
       </div>
 
       {/* Container for the central text content */}
-      <div className="intro-text-content">
+      <div className={`intro-text-content ${isTextVisible ? "visible" : ""}`}>
         {/* Use h1 for the main name */}
         <h1 className="intro-name">Vibhishan Ranga</h1>
         {/* Use h2 for the description */}
@@ -74,7 +93,11 @@ export default function Introduction() {
       </div>
 
       {/* Container for the right SVG */}
-      <div className="intro-svg-container intro-svg-right">
+      <div
+        className={`intro-svg-container intro-svg-right ${
+          isVisible ? "visible" : ""
+        }`}
+      >
         {/* You might need to flip this SVG horizontally if it should mirror the left one */}
         <DecorativeSvg />
       </div>

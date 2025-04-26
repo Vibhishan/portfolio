@@ -49,7 +49,38 @@ $svg-vertical-shift: 30px; // User's current vertical shift
   font-family: $font-primary;
   color: $color-text-main;
   overflow: hidden;
-  position: relative;
+
+  // Animation styles
+  .intro-svg-container {
+    opacity: 0;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.intro-svg-left {
+      transform: translateX(-100%);
+    }
+
+    &.intro-svg-right {
+      transform: translateX(100%);
+    }
+
+    &.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .intro-text-content {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 .intro-text-content {
