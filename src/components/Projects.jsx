@@ -59,9 +59,18 @@ const DecorativeSvg = () => (
 export default function Projects() {
   return (
     // Main container for the projects section
-    <section className="projects-section">
+    <section
+      className="projects-section"
+      data-aos="fade-up"
+      data-aos-duration="500"
+    >
       {/* Row 1: Project Card Left, SVG Right */}
-      <div className="project-row project-row-svg-right">
+      <div
+        className="project-row project-row-svg-right"
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-offset="50"
+      >
         {/* Project Card 1 */}
         <div className="project-card project-card-1">
           <h3 className="project-title">Hangman</h3>
@@ -94,7 +103,12 @@ export default function Projects() {
       </div>
 
       {/* Row 2: SVG Left, Project Card Right */}
-      <div className="project-row project-row-svg-left">
+      <div
+        className="project-row project-row-svg-left"
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-offset="50"
+      >
         {/* SVG Container */}
         <div className="project-svg-container project-svg-left">
           <DecorativeSvg />
@@ -126,7 +140,12 @@ export default function Projects() {
       </div>
 
       {/* Row 3: Two Project Cards Side-by-Side */}
-      <div className="project-row project-row-double-card">
+      <div
+        className="project-row project-row-double-card"
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-offset="50"
+      >
         {/* Project Card 3 */}
         <a
           href="https://github.com/Vibhishan/bookmyshow-design"

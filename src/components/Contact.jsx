@@ -508,7 +508,7 @@ export default function Contact() {
       </div>
 
       {/* Main Content Container (Overlay) */}
-      <div className="contact-content-container">
+      <div className="contact-content-container" data-aos="fade-up">
         <h2 className="contact-title">Contact</h2>
         <h3 className="contact-subtitle">
           I'm always looking for new opportunities to learn and grow. If you'd
@@ -516,7 +516,7 @@ export default function Contact() {
           create something amazing together.
         </h3>
 
-        <div className="contact-details">
+        <div className="contact-details" data-aos="fade-up" data-aos-delay="50">
           {" "}
           {/* Make email a mailto link */}
           <a href="mailto:hello@vibhishanranga.com" className="contact-email">
@@ -598,7 +598,11 @@ export default function Contact() {
       </div>
 
       {/* Footer Container */}
-      <footer className="contact-footer">
+      <footer
+        className="contact-footer"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
         <p className="footer-text">
           {/* Example Footer Text */}
           Designed by{" "}

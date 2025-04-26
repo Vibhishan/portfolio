@@ -33,9 +33,9 @@ const LongArrowSvg = () => {
 
 export default function Experience() {
   return (
-    <section className="experience-section">
+    <section className="experience-section" data-aos="fade-up">
       {/* Container for the timeline elements */}
-      <div className="timeline-container-long-arrow">
+      <div className="timeline-container-long-arrow" data-aos="fade-up">
         {" "}
         {/* New class name */}
         {/* The single long arrow SVG */}
@@ -43,8 +43,11 @@ export default function Experience() {
           <LongArrowSvg />
         </div>
         {/* Experience Point 1 (Left, Below) */}
-        {/* Removed marker div */}
-        <div className="timeline-point timeline-point-below">
+        <div
+          className="timeline-point timeline-point-below"
+          data-aos="fade-up"
+          data-aos-delay="50"
+        >
           <div className="timeline-content">
             <h3 className="experience-title">Summer Intern</h3>
             <h4 className="experience-company">@ Brün Health</h4>
@@ -52,8 +55,11 @@ export default function Experience() {
           </div>
         </div>
         {/* Experience Point 2 (Center, Above) */}
-        {/* Removed marker div */}
-        <div className="timeline-point timeline-point-above">
+        <div
+          className="timeline-point timeline-point-above"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
           <div className="timeline-content">
             <h3 className="experience-title">Project Intern</h3>
             <h4 className="experience-company">@ Brün Health</h4>
@@ -61,8 +67,11 @@ export default function Experience() {
           </div>
         </div>
         {/* Experience Point 3 (Right, Below) */}
-        {/* Removed marker div */}
-        <div className="timeline-point timeline-point-below">
+        <div
+          className="timeline-point timeline-point-below"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        >
           <div className="timeline-content">
             <h3 className="experience-title">Software Developer</h3>
             <h4 className="experience-company">@ Delta Capita</h4>
