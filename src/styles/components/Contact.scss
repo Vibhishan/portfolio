@@ -13,9 +13,9 @@ $color-svg-pattern: $color-text-main; // Color for the background SVG strokes
 
 // Font Sizes
 $font-size-contact-title: 2.5rem;
-$font-size-contact-subtitle: 1.2rem;
+$font-size-contact-subtitle: 1rem;
 $font-size-contact-text: 1rem;
-$font-size-contact-email: 1.1rem;
+$font-size-contact-email: 2rem;
 $font-size-footer: 0.9rem;
 
 // Font Weights
@@ -104,7 +104,7 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   font-size: $font-size-contact-subtitle;
   font-weight: $font-weight-regular;
   line-height: 1.6;
-  margin: 0 auto ($spacing-unit * 2) auto; // Center horizontally with auto margins
+  margin: ($spacing-unit * 3) auto ($spacing-unit * 2) auto; // Added top margin
   max-width: 90%; // Keep subtitle from getting too wide
   color: $color-contact-text; // Updated to light text
 }

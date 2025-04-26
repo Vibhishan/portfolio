@@ -32,7 +32,6 @@ $arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
 // --- Experience Section Styles ---
 .experience-section {
   padding: $experience-section-padding-y $experience-section-padding-x;
-  padding-bottom: 12 * $spacing-unit;
   width: 100%;
   margin: 0 auto;
   background-color: $color-background;

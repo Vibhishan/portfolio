@@ -507,15 +507,11 @@ export default function Contact() {
         <h2 className="contact-title">Contact</h2>
         <h3 className="contact-subtitle">
           I'm always looking for new opportunities to learn and grow. If you'd
-          like to get in touch, please don't hesitate to reach out.
+          like to get in touch, please don't hesitate to reach out. Let us create something amazing together.
         </h3>
 
         <div className="contact-details">
           {" "}
-          {/* Renamed from contact-content */}
-          <p className="contact-text">
-            Let us create something amazing together.
-          </p>
           {/* Make email a mailto link */}
           <a href="mailto:hello@vibhishanranga.com" className="contact-email">
             hello@vibhishanranga.com
