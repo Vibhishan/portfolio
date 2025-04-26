@@ -499,7 +499,12 @@ export default function Contact() {
     <section className="contact-section" id="contact">
       {/* Background SVG Layer */}
       <div className="contact-background">
-        <BackgroundPatternSvg />
+        {/* <BackgroundPatternSvg /> */}
+        <div className="infinite-pattern">
+          <BackgroundPatternSvg className="contact-background-svg" />
+
+          <BackgroundPatternSvg className="contact-background-svg" />
+        </div>
       </div>
 
       {/* Main Content Container (Overlay) */}
@@ -507,7 +512,8 @@ export default function Contact() {
         <h2 className="contact-title">Contact</h2>
         <h3 className="contact-subtitle">
           I'm always looking for new opportunities to learn and grow. If you'd
-          like to get in touch, please don't hesitate to reach out. Let us create something amazing together.
+          like to get in touch, please don't hesitate to reach out. Let us
+          create something amazing together.
         </h3>
 
         <div className="contact-details">

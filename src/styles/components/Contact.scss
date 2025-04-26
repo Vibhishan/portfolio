@@ -48,6 +48,31 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   min-height: 100vh; // Ensure section takes at least full viewport height
 }
 
+@keyframes scrollPattern {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+// // New infinite pattern container
+
+.infinite-pattern {
+  display: flex;
+  width: 300%; // Double width to hold two SVGs
+  // height: 100%;
+  animation: scrollPattern 30s linear infinite; // Adjust speed here
+}
+
+.infinite-pattern > svg {
+  flex: 0 0 50%; // Each SVG takes exactly 50% of container space
+  width: 100%; // Full width within its container space
+  -webkit-preserveaspectratio: xMidYMid slice;
+}
+
 // --- Background SVG Layer ---
 .contact-background {
   position: absolute;
