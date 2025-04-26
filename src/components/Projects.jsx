@@ -68,7 +68,7 @@ export default function Projects() {
       <div
         className="project-row project-row-svg-right"
         data-aos="fade-up"
-        data-aos-duration="500"
+        data-aos-duration="200"
         data-aos-offset="50"
       >
         {/* Project Card 1 */}
@@ -106,7 +106,7 @@ export default function Projects() {
       <div
         className="project-row project-row-svg-left"
         data-aos="fade-up"
-        data-aos-duration="500"
+        data-aos-duration="200"
         data-aos-offset="50"
       >
         {/* SVG Container */}
@@ -143,7 +143,7 @@ export default function Projects() {
       <div
         className="project-row project-row-double-card"
         data-aos="fade-up"
-        data-aos-duration="500"
+        data-aos-duration="200"
         data-aos-offset="50"
       >
         {/* Project Card 3 */}

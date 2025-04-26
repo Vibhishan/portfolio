@@ -46,7 +46,7 @@ export default function Experience() {
         <div
           className="timeline-point timeline-point-below"
           data-aos="fade-up"
-          data-aos-delay="50"
+          data-aos-delay="20"
         >
           <div className="timeline-content">
             <h3 className="experience-title">Summer Intern</h3>
@@ -58,7 +58,7 @@ export default function Experience() {
         <div
           className="timeline-point timeline-point-above"
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="50"
         >
           <div className="timeline-content">
             <h3 className="experience-title">Project Intern</h3>
@@ -70,7 +70,7 @@ export default function Experience() {
         <div
           className="timeline-point timeline-point-below"
           data-aos="fade-up"
-          data-aos-delay="150"
+          data-aos-delay="80"
         >
           <div className="timeline-content">
             <h3 className="experience-title">Software Developer</h3>

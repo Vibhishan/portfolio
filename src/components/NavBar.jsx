@@ -36,7 +36,9 @@ export default function NavBar() {
         <h4 className="navbar-text">Based in London, UK</h4>
       </div>
       <div className="navbar-email">
-        <h4 className="navbar-text">hello@vibhishanranga.com</h4>
+        <h4 className="navbar-text">
+          <a href="mailto:hello@vibhishanranga.com">hello@vibhishanranga.com</a>
+        </h4>
       </div>
       <div className="navbar-cv">
         <button className="cv-button">Download CV</button>

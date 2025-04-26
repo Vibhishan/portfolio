@@ -516,7 +516,7 @@ export default function Contact() {
           create something amazing together.
         </h3>
 
-        <div className="contact-details" data-aos="fade-up" data-aos-delay="50">
+        <div className="contact-details" data-aos="fade-up" data-aos-delay="20">
           {" "}
           {/* Make email a mailto link */}
           <a href="mailto:hello@vibhishanranga.com" className="contact-email">
@@ -601,7 +601,6 @@ export default function Contact() {
       <footer
         className="contact-footer"
         data-aos="fade-up"
-        data-aos-delay="100"
       >
         <p className="footer-text">
           {/* Example Footer Text */}
