@@ -126,11 +126,18 @@ $arrow-animation-delay-factor: 0.3s;
 
   &.intro-svg-left {
     margin-left: -$negative-margin; // Apply negative left margin
-    transform: translateY($svg-vertical-shift); // Move down
+
+    &.visible {
+      transform: translateX(0) translateY($svg-vertical-shift) !important; // Ensure vertical shift applies
+    }
   }
+
   &.intro-svg-right {
     margin-right: -$negative-margin; // Apply negative right margin
-    transform: translateY(-$svg-vertical-shift); // Move up
+
+    &.visible {
+      transform: translateX(0) translateY(-$svg-vertical-shift) !important; // Ensure vertical shift applies
+    }
 
     // If the right SVG needs to be mirrored:
     // transform: scaleX(-1) translateY(-$svg-vertical-shift); // Combine transforms if needed

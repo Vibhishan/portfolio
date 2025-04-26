@@ -91,13 +91,20 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   position: relative;
   z-index: 1;
   color: $color-project-card-text;
-  transition: background-color 0.3s ease; // Add smooth transition
+  transition: background-color 0.3s ease, transform 0.3s ease; // Added transform transition
   text-decoration: none;
+  transform: scale(1); // Set initial scale
 
   // --- Added Flexbox for internal content positioning ---
   display: flex;
   flex-direction: column;
   justify-content: flex-end; // Push content to the bottom
+
+  // Add hover effect for all cards
+  &:hover {
+    transform: scale(1.03); // Grow cards slightly on hover
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); // Optional: add subtle shadow for depth
+  }
 
   // Width control for different row types
   .project-row-svg-right &,
@@ -117,19 +124,19 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
 
   // Hover effects for each project card
   &.project-card-1:hover {
-    background-color: #EA4335;
+    background-color: #ea4335;
   }
 
   &.project-card-2:hover {
-    background-color: #4285F4;
+    background-color: #4285f4;
   }
 
   &.project-card-3:hover {
-    background-color: #FBBC04;
+    background-color: #fbbc04;
   }
 
   &.project-card-4:hover {
-    background-color: #34A853;
+    background-color: #34a853;
   }
 }
 
