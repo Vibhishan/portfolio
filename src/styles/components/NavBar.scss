@@ -4,8 +4,8 @@ $font-primary: "Inter", sans-serif;
 
 // Colors
 $color-background: #fffefb;
-$color-text: #333333;
-$color-border: #333333;
+$color-text: #111111;
+$color-border: #111111;
 
 // Spacing
 $spacing-unit: 1rem;
@@ -66,8 +66,8 @@ $transition-timing: ease;
 
 // --- Button Styles ---
 .cv-button {
-  background-color: transparent;
-  color: $color-text;
+  background-color: $color-text;
+  color: $color-background;
   border: 1.5px solid $color-border;
   border-radius: 4px;
   padding: $button-padding-vertical $button-padding-horizontal;
@@ -79,8 +79,8 @@ $transition-timing: ease;
   outline: none;
 
   &:hover {
-    background-color: $color-text;
-    color: $color-background;
+    background-color: $color-background;
+    color: $color-text;
     transform: translateY(-1px);
   }
 

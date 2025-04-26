@@ -594,7 +594,7 @@ export default function Contact() {
       <footer className="contact-footer">
         <p className="footer-text">
           {/* Example Footer Text */}
-          Designed & Built by Vibhishan Ranga &copy; {new Date().getFullYear()}
+          Designed by Amoghavarsha Rao & Built by Vibhishan Ranga &copy; {new Date().getFullYear()}
         </p>
       </footer>
     </section>

@@ -129,7 +129,7 @@ export default function Projects() {
       <div className="project-row project-row-double-card">
         {/* Project Card 3 */}
         <div className="project-card">
-          <h3 className="project-title">BookMyShow</h3>
+          <h3 className="project-title">Book-My-Show</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
             <span className="tag tag-status">Repo Only</span>
@@ -149,7 +149,7 @@ export default function Projects() {
         </div>
         {/* Project Card 4 */}
         <div className="project-card">
-          <h3 className="project-title">TicTacToe</h3>
+          <h3 className="project-title">Tic-Tac-Toe</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
             <span className="tag tag-status">Repo Only</span>
