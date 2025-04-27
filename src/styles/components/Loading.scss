@@ -1,3 +1,15 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif;
+$font-secondary: "Inter", sans-serif;
+
+// Colors
+$color-background: #fffefb;
+$color-text: #111111;
+$spinner-size: 50px;
+$spinner-border: 5px;
+
+// --- Loading Styles ---
 .loading-container {
   position: fixed;
   top: 0;
@@ -60,5 +72,56 @@
       transform: translateX(100%);
       opacity: 0;
     }
+  }
+}
+
+.loading-spinner {
+  width: $spinner-size;
+  height: $spinner-size;
+  position: relative;
+}
+
+.spinner-inner {
+  width: 100%;
+  height: 100%;
+  border: $spinner-border solid rgba($color-text, 0.1);
+  border-top: $spinner-border solid $color-text;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.loading-text {
+  font-family: $font-secondary;
+  font-size: 1rem;
+  color: $color-text;
+  margin-top: 1.5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Media queries for smaller screens
+@media (max-width: 480px) {
+  $spinner-size-small: 40px;
+  $spinner-border-small: 4px;
+
+  .loading-spinner {
+    width: $spinner-size-small;
+    height: $spinner-size-small;
+  }
+
+  .spinner-inner {
+    border-width: $spinner-border-small;
+  }
+
+  .loading-text {
+    font-size: 0.9rem;
+    margin-top: 1.2rem;
   }
 }

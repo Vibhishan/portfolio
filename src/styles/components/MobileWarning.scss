@@ -1,0 +1,132 @@
+// --- Variables ---
+// Fonts
+$font-primary: "Space Grotesk", sans-serif; // For headings
+$font-secondary: "Inter", sans-serif; // For body text
+
+// Colors
+$color-background: #fffefb;
+$color-text: #111111;
+$color-border: #111111;
+
+// Spacing
+$spacing-unit: 1rem;
+
+// Transitions
+$transition-duration: 0.3s;
+$transition-timing: ease;
+
+// Button styles from NavBar.scss
+$button-padding-horizontal: 1rem;
+$button-padding-vertical: 0.4rem;
+
+// --- Mobile Warning Styles ---
+.mobile-warning-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $color-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; // Higher than navbar
+  padding: $spacing-unit;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.mobile-warning-content {
+  background-color: $color-background;
+  padding: $spacing-unit * 2;
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-warning-title {
+  font-family: $font-primary;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 $spacing-unit 0;
+  color: $color-text;
+}
+
+.mobile-warning-text {
+  font-family: $font-secondary;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 $spacing-unit * 2 0;
+  color: $color-text;
+}
+
+// Button styled like CV button from NavBar.scss
+.continue-button {
+  background-color: $color-text;
+  color: $color-background;
+  border: 1.5px solid $color-border;
+  border-radius: 4px;
+  padding: $button-padding-vertical $button-padding-horizontal;
+  font-family: $font-secondary;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all $transition-duration $transition-timing;
+  letter-spacing: 0.5px;
+  outline: none;
+
+  &:hover {
+    background-color: $color-background;
+    color: $color-text;
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Smaller mobile screens
+@media (max-width: 480px) {
+  .mobile-warning-content {
+    padding: $spacing-unit * 1.5;
+  }
+
+  .mobile-warning-title {
+    font-size: 1.5rem;
+  }
+
+  .mobile-warning-text {
+    font-size: 0.9rem;
+  }
+
+  .continue-button {
+    font-size: 0.9rem;
+    padding: 0.3rem 0.8rem;
+  }
+}
+
+// Extra small devices
+@media (max-width: 375px) {
+  .mobile-warning-content {
+    padding: $spacing-unit;
+  }
+
+  .mobile-warning-title {
+    font-size: 1.3rem;
+  }
+
+  .mobile-warning-text {
+    font-size: 0.85rem;
+    margin-bottom: $spacing-unit * 1.5;
+  }
+
+  .continue-button {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.7rem;
+  }
+}
