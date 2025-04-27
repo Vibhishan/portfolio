@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "../styles/components/Introduction.scss"; // Import SCSS file
 
 export default function Introduction() {
   const [isVisible, setIsVisible] = useState(false);
   const [isTextVisible, setIsTextVisible] = useState(false);
   const [isScrollArrowsVisible, setIsScrollArrowsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    // Start the SVG animations
-    setIsVisible(true);
+    // Start the animations with a slight delay
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
 
     // After SVG animations complete, show the text
     const textTimer = setTimeout(() => {
@@ -22,24 +25,23 @@ export default function Introduction() {
       return () => clearTimeout(arrowTimer);
     }, 1000); // Adjust timing to match SVG animation duration
 
-    return () => clearTimeout(textTimer);
+    return () => {
+      clearTimeout(textTimer);
+    };
   }, []);
 
-  // Replicated SVG component for clarity (could be imported)
+  // SVG component
   const DecorativeSvg = () => (
     <svg
-      className="intro-decorative-svg" // Added class for styling
-      // width="359" // Control size via CSS instead
-      // height="525"
+      className="intro-decorative-svg"
       viewBox="0 0 359 525"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="xMidYMid meet" // Helps with scaling
+      preserveAspectRatio="xMidYMid meet"
     >
-      {/* SVG paths remain the same */}
       <path
         d="M147.422 147.421L147.422 17L17.0005 147.421L147.422 147.421Z"
-        stroke="currentColor" // Use currentColor to inherit color
+        stroke="currentColor"
         strokeWidth="13.593"
       />
       <path
@@ -100,23 +102,21 @@ export default function Introduction() {
   );
 
   return (
-    // Use a section element for semantic structure
-    <section className="introduction-section">
+    <section className="introduction-section" ref={sectionRef}>
       {/* Container for the left SVG */}
       <div
         className={`intro-svg-container intro-svg-left ${
           isVisible ? "visible" : ""
         }`}
+        aria-hidden="true"
       >
         <DecorativeSvg />
       </div>
 
       {/* Container for the central text content */}
       <div className={`intro-text-content ${isTextVisible ? "visible" : ""}`}>
-        {/* Use h1 for the main name */}
-        <h1 className="intro-name">Vibhishan Ranga</h1>
-        {/* Use h2 for the description */}
-        <h1 className="intro-title">Developer; Designer.</h1>
+        <h1 className="intro-name">VIBHISHAN RANGA</h1>
+        <h1 className="intro-title">DEVELOPER; DESIGNER.</h1>
       </div>
 
       {/* Container for the right SVG */}
@@ -124,8 +124,8 @@ export default function Introduction() {
         className={`intro-svg-container intro-svg-right ${
           isVisible ? "visible" : ""
         }`}
+        aria-hidden="true"
       >
-        {/* You might need to flip this SVG horizontally if it should mirror the left one */}
         <DecorativeSvg />
       </div>
 

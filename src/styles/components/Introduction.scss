@@ -32,27 +32,34 @@ $arrow-animation-duration: 2s;
 $arrow-animation-delay-factor: 0.3s;
 
 // --- Base Styles ---
-// body { ... } // Optional body styles
+// These styles were causing the issue by preventing scrolling to content below
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
 
 // --- Component Styles ---
 .introduction-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh; // Changed to full viewport height
-  padding-top: calc(
-    #{$navbar-height} + 2 * #{$spacing-unit}
-  ); // Add navbar height to top padding
-  width: 100%;
+  height: 100vh; // Full viewport height
+  min-height: 100vh; // Ensure minimum height is full viewport
+  width: 100%; // Full width
+  padding-top: calc(#{$navbar-height} + 2 * #{$spacing-unit});
   padding-right: 5%;
   padding-left: 5%;
   padding-bottom: 2 * $spacing-unit;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: 0;
   background-color: $color-background;
   font-family: $font-primary;
   color: $color-text-main;
-  overflow: hidden;
+  overflow: hidden; // Prevent any content from overflowing
+  position: relative; // Add positioning context
 
   // Animation styles
   .intro-svg-container {
@@ -90,6 +97,7 @@ $arrow-animation-delay-factor: 0.3s;
 .intro-text-content {
   text-align: center;
   flex-grow: 1; // Allow text content to take available space
+  max-width: 100%; // Ensure it doesn't overflow
 }
 
 .intro-name {
@@ -138,9 +146,6 @@ $arrow-animation-delay-factor: 0.3s;
     &.visible {
       transform: translateX(0) translateY(-$svg-vertical-shift) !important; // Ensure vertical shift applies
     }
-
-    // If the right SVG needs to be mirrored:
-    // transform: scaleX(-1) translateY(-$svg-vertical-shift); // Combine transforms if needed
   }
 }
 
@@ -149,6 +154,10 @@ $arrow-animation-delay-factor: 0.3s;
   width: 100%;
   height: auto;
   stroke: $color-text-main;
+
+  &.intro-decorative-svg-right {
+    // Add any specific styling for the right SVG if needed
+  }
 }
 
 // --- Scroll Down Indicator ---
@@ -213,13 +222,18 @@ $arrow-animation-delay-factor: 0.3s;
   $negative-margin-medium: $svg-container-width-medium *
     ($svg-overlap-percentage / 100%);
   // Optionally adjust vertical shift for medium screens
-  $svg-vertical-shift-medium: $svg-vertical-shift * 0.8; // Example: reduce shift slightly
+  $svg-vertical-shift-medium: $svg-vertical-shift * 0.7; // Example: reduce shift slightly
 
   .introduction-section {
-    padding: 2 * $spacing-unit 4%;
-    // Keep full height calculation
-    min-height: calc(100vh - #{$navbar-height});
-    // Margin is already 0 auto
+    padding-top: calc(
+      #{$navbar-height} + 1.5 * #{$spacing-unit}
+    ); // Reduced top padding
+    padding-right: 4%;
+    padding-left: 4%;
+    padding-bottom: 1.5 * $spacing-unit; // Reduced bottom padding
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
   }
   .intro-name {
     font-size: calc(#{$font-size-h1} * 0.8);
@@ -230,11 +244,11 @@ $arrow-animation-delay-factor: 0.3s;
   .intro-svg-container {
     width: $svg-container-width-medium;
     &.intro-svg-left {
-      margin-left: -$negative-margin-medium;
+      // margin-left: -$negative-margin-medium;
       transform: translateY($svg-vertical-shift-medium); // Apply adjusted shift
     }
     &.intro-svg-right {
-      margin-right: -$negative-margin-medium;
+      // margin-right: -$negative-margin-medium;
       transform: translateY(
         -$svg-vertical-shift-medium
       ); // Apply adjusted shift
@@ -244,59 +258,127 @@ $arrow-animation-delay-factor: 0.3s;
 
 // Small Screens / Mobiles
 @media (max-width: 768px) {
-  // --- SVG container width for small screens ---
-  $svg-container-width-small: 130px;
-
   .introduction-section {
-    flex-direction: column; // Stack elements vertically
-    justify-content: center; // Center content vertically in the available space
-    min-height: calc(100vh - #{$navbar-height}); // Keep full height
-    text-align: center;
-    padding: 2 * $spacing-unit 5%;
-    width: 100%; // Use full width even when stacked
-    margin: 0 auto; // Keep margin settings
+    height: 100vh;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .intro-svg-container {
-    width: $svg-container-width-small;
-    margin: 2 * $spacing-unit 0; // Use vertical margin, reset horizontal/negative margins
 
-    &.intro-svg-left,
+  // SVG containers
+  .intro-svg-container {
+    position: absolute !important;
+    margin-left: -20px !important; // Reset any negative margins
+    margin-right: -20px !important; // Reset any negative margins
+    width: 110px !important; // Set specific width
+
+    &.intro-svg-left {
+      bottom: 35% !important; // Keep vertical position
+      left: 0 !important; // Ensure it's at the left edge
+      right: auto !important; // Clear any right positioning
+    }
+
     &.intro-svg-right {
-      margin-left: auto;
-      margin-right: auto;
-      transform: translateY(0); // Reset vertical shift when stacked
+      top: 35% !important; // Keep vertical position
+      right: 0 !important; // Ensure it's at the right edge
+      left: auto !important; // Clear any left positioning
     }
   }
-  .intro-name {
-    font-size: calc(#{$font-size-h1} * 0.6);
+
+  .intro-text-content {
+    position: absolute;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 5;
+    width: 100%;
+    max-width: 90%;
+    box-sizing: border-box;
+    margin: 0;
+
+    &.visible {
+      opacity: 1;
+    }
   }
+
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.5);
+    margin-bottom: $spacing-unit * 0.5;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
   .intro-title {
-    font-size: calc(#{$font-size-h1} * 0.6); // Adjust based on h1 size
+    font-size: calc(#{$font-size-h1} * 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
   .scroll-down-indicator {
-    bottom: 20px; // Adjust position for mobile
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
   }
 }
 
 // Extra Small Screens
 @media (max-width: 480px) {
-  // --- SVG container width for extra small screens ---
-  $svg-container-width-xsmall: 105px;
-
-  .introduction-section {
-    padding: $spacing-unit 3%;
-    // Keep full height calculation
-    min-height: calc(100vh - #{$navbar-height});
-  }
-  .intro-name {
-    font-size: calc(#{$font-size-h1} * 0.5);
-  }
-  .intro-title {
-    font-size: calc(#{$font-size-h1} * 0.5); // Adjust based on h1 size
-  }
   .intro-svg-container {
-    width: $svg-container-width-xsmall;
-    // transform is already reset from 768px breakpoint
+    width: 90px !important;
+
+    &.intro-svg-left {
+      bottom: 32% !important;
+      left: 0 !important;
+      right: auto !important;
+    }
+
+    &.intro-svg-right {
+      top: 32% !important;
+      right: 0 !important;
+      left: auto !important;
+    }
+  }
+
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.45);
+  }
+
+  .intro-title {
+    font-size: calc(#{$font-size-h1} * 0.45);
+  }
+}
+
+// iPhone specific adjustments
+@media (max-width: 390px) {
+  .intro-svg-container {
+    width: 80px !important;
+
+    &.intro-svg-left {
+      bottom: 28% !important;
+      left: 0 !important;
+      right: auto !important;
+    }
+
+    &.intro-svg-right {
+      top: 28% !important;
+      right: 0 !important;
+      left: auto !important;
+    }
+  }
+
+  .intro-name {
+    font-size: calc(#{$font-size-h1} * 0.4);
+  }
+
+  .intro-title {
+    font-size: calc(#{$font-size-h1} * 0.4);
   }
 }

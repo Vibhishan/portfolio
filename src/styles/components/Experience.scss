@@ -140,7 +140,7 @@ $arrow-line-thickness: 6px; // Increased thickness to match the SVG stroke-width
 
 @media (max-width: 768px) {
   .experience-section {
-    padding: ($experience-section-padding-y * 0.6) $spacing-unit;
+    padding: 0 $spacing-unit; // Removed top/bottom padding, kept horizontal padding
   }
 
   // Font size adjustments for mobile
@@ -157,34 +157,81 @@ $arrow-line-thickness: 6px; // Increased thickness to match the SVG stroke-width
   }
 
   .timeline-container-long-arrow {
-    display: block; // Stack points vertically
-    padding: 0; // Reset padding
-    margin: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0; // Reduced margin top/bottom
+    position: relative;
+    min-height: 500px;
   }
 
   .long-arrow-container {
-    display: none; // Hide the arrow on small screens
+    display: flex;
+    position: absolute;
+    top: -3rem;
+    left: 0;
+    bottom: -3rem;
+    right: auto;
+    width: 4rem; // Reduced width to bring text closer
+    height: calc(100% + 16rem); // Extended height significantly
+    transform: none;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+  }
+
+  .long-arrow-svg {
+    transform: rotate(90deg) scale(7); // Dramatically increased scale
+    transform-origin: center;
+    width: 100%;
+    height: 300%; // Significantly increased height
+    max-height: none;
+    position: relative;
   }
 
   .timeline-point {
-    width: 100%; // Take full width
-    padding: 0; // Reset padding
-    margin-bottom: $stacked-point-gap;
+    width: 100%;
+    padding: 0 0 3rem 0;
+    margin: 0;
+    position: relative;
 
     &:last-of-type {
-      margin-bottom: 0;
+      padding-bottom: 0;
     }
   }
 
   .timeline-content {
-    text-align: left !important; // Ensure left alignment
-    transform: none !important; // Reset transform when stacked
-    position: static; // Reset position
+    text-align: left !important;
+    transform: none !important;
+    position: static;
+    padding-left: 0; // Removed left padding to bring text closer to arrow
 
-    // Reset padding overrides (though they were removed from parent)
     .timeline-point-above &,
     .timeline-point-below & {
-      padding: 0;
+      padding-left: 0; // Removed left padding
+    }
+  }
+
+  // Additional spacing between points
+  .timeline-point + .timeline-point {
+    margin-top: 1rem;
+  }
+
+  // Additional mobile-specific adjustments
+  @media (max-width: 480px) {
+    .timeline-container-long-arrow {
+      padding-left: 3.5rem; // Reduced left padding further
+      min-height: 450px;
+    }
+
+    .long-arrow-container {
+      width: 3.5rem; // Reduced width
+      height: calc(100% + 8rem); // Slightly reduced but still tall
+    }
+
+    .long-arrow-svg {
+      transform: rotate(90deg) scale(6); // Slightly reduced but still very large
+      height: 250%; // Slightly reduced but still very tall
     }
   }
 }

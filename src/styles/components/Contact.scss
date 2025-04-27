@@ -231,6 +231,11 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   .contact-footer {
     width: 90%; // Adjust width for tablets
   }
+
+  .contact-email {
+    font-size: $font-size-contact-email * 0.9;
+    word-break: break-word; // Allow email to break to prevent overflow
+  }
 }
 
 @media (max-width: 768px) {
@@ -243,25 +248,51 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
   .contact-footer {
     width: 90%; // Keep wider width
   }
+
   .contact-content-container {
     padding: $contact-container-padding * 0.8;
-    margin-bottom: 3 * $spacing-unit; // Add back some margin when not using sticky footer
+    margin-bottom: 2 * $spacing-unit; // Reduced from 3 to 2 * spacing unit
   }
 
-  .contact-title {
-    font-size: $font-size-contact-title * 0.8;
-  }
   .contact-subtitle {
     font-size: $font-size-contact-subtitle * 0.9;
+    max-width: 100%; // Allow subtitle to use full width
+    line-height: 1.5; // Reduce line height slightly
   }
+
   .contact-background {
-    // Adjust width if needed
-    width: 150vw; // Example: Less extreme overflow on smaller screens
+    // Increased width for more pattern coverage
+    width: 150vw; // Increased from 150vw
+    top: 15%; // Slightly higher position to show more pattern
+    height: 85%; // Increased height for more coverage
   }
+
   .contact-footer {
     margin-top: 0; // Reset margin-top when not sticky
-    // Add bottom padding matching section top padding
-    margin-bottom: $contact-section-padding-y * 0.7;
+    // Reduce bottom margin
+    margin-bottom: $contact-section-padding-y * 0.4; // Reduced from 0.7
+    padding: $footer-padding * 0.8; // Reduce padding
+  }
+
+  .contact-email {
+    font-size: $font-size-contact-email * 0.8; // Decrease email font size
+    word-break: break-word; // Allow email to break to new line
+    padding-bottom: 1px; // Reduce bottom padding
+    border-bottom-width: 1px; // Thinner underline
+  }
+
+  .footer-text {
+    line-height: 1.5; // Increase line height for readability
+
+    a {
+      display: inline; // Keep links inline but allow wrapping
+      white-space: normal; // Allow wrapping
+      border-bottom-width: 1px; // Thinner underline for links
+    }
+  }
+
+  .infinite-pattern {
+    width: 400%; // Increased from 300% for mobile
   }
 }
 
@@ -271,31 +302,97 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
 
   .contact-content-container,
   .contact-footer {
-    width: 95%; // Almost full width on very small screens
+    width: 92%; // Slightly narrower for better margins
   }
+
   .contact-content-container {
-    padding: $contact-container-padding * 0.7;
+    padding: $contact-container-padding * 0.6; // Reduce padding to provide more content space
+    margin-bottom: 1.5 * $spacing-unit; // Reduced space between container and footer
   }
+
   .contact-title {
     font-size: $font-size-contact-title * 0.7;
   }
+
   .contact-subtitle {
-    font-size: $font-size-contact-subtitle * 0.8;
+    font-size: $font-size-contact-subtitle * 0.85;
+    margin: ($spacing-unit * 2) auto ($spacing-unit * 1.5) auto; // Reduce margins
+    line-height: 1.4; // Tighten line height further
   }
+
   .social-icons {
     gap: $social-icon-gap-small;
+    flex-wrap: wrap; // Allow icons to wrap if needed
+    justify-content: center; // Keep centered when wrapped
+    margin-top: $spacing-unit * 1.5; // Reduced from default 2.5
   }
+
   .social-icon {
     width: $social-icon-size-small;
     height: $social-icon-size-small;
   }
+
   .contact-footer {
-    padding: $footer-padding * 0.8;
+    padding: $footer-padding * 0.7; // Further reduce padding
+    margin-bottom: $contact-section-padding-y * 0.3; // Further reduce bottom margin
   }
+
   .footer-text {
-    font-size: $font-size-footer * 0.9;
+    font-size: $font-size-footer * 0.85; // Reduce font size more
+    line-height: 1.4; // Tighter line height
+    padding: 0 $spacing-unit * 0.5; // Add side padding for readability
+
+    a {
+      padding-bottom: 0; // Remove padding to save space
+    }
+  }
+  .contact-email {
+    font-size: $font-size-contact-email * 0.65; // Further reduce email size
+    margin: $spacing-unit 0 $spacing-unit 0; // Reduce margin
   }
   .contact-background {
-    width: 180vw; // Example: Even wider relative overflow on small screens might look ok
+    width: 200vw; // Increased from 180vw for more coverage on small screens
+    top: 10%; // Higher position to cover more
+    height: 90%; // Larger height for more coverage
+  }
+
+  .contact-text {
+    font-size: $font-size-contact-text * 0.9; // Smaller text
+    margin: $spacing-unit * 0.7 0; // Reduced margins
+  }
+
+  .infinite-pattern {
+    width: 500%; // Further increased for smallest screens
+    animation: scrollPattern 35s linear infinite; // Slightly faster animation
+  }
+}
+
+// Extra small devices
+@media (max-width: 375px) {
+  .contact-email {
+    font-size: $font-size-contact-email * 0.55; // Further reduce for very small screens
+    letter-spacing: -0.5px; // Tighten letter spacing
+  }
+
+  .footer-text {
+    font-size: $font-size-footer * 0.8;
+    word-spacing: -1px; // Tighten word spacing
+  }
+
+  .contact-subtitle {
+    font-size: $font-size-contact-subtitle * 0.8;
+  }
+
+  .contact-content-container {
+    padding: $contact-container-padding * 0.5;
+  }
+
+  .contact-footer {
+    padding: $footer-padding * 0.6; // Further reduce padding
+    margin-bottom: $contact-section-padding-y * 0.2; // Minimal margin at bottom
+  }
+
+  .social-icons {
+    margin-top: $spacing-unit; // Further reduced spacing
   }
 }

@@ -23,6 +23,11 @@ $button-padding-vertical: 0.4rem;
 $transition-duration: 0.3s;
 $transition-timing: ease;
 
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-small-mobile: 480px;
+$breakpoint-iphone: 390px; // iPhone 12/14 Pro width
+
 // --- Component Styles ---
 .navbar {
   display: flex;
@@ -38,6 +43,9 @@ $transition-timing: ease;
   box-shadow: none;
   height: $navbar-height;
   font-family: $font-primary;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden; // Prevent horizontal scrolling
 }
 
 // --- Logo Styles ---
@@ -90,5 +98,75 @@ $transition-timing: ease;
 
   &:active {
     transform: translateY(0);
+  }
+}
+
+// --- Media Queries ---
+@media (max-width: $breakpoint-mobile) {
+  // Completely remove email and location from flow on mobile
+  .navbar-email,
+  .navbar-location {
+    display: none;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    visibility: hidden;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  // Recreate the navbar as a direct container for logo and button only
+  .navbar {
+    padding: $navbar-padding-vertical $navbar-padding-horizontal;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 100vw; // Ensure it never exceeds viewport width
+  }
+
+  // Make sure the button doesn't overflow
+  .cv-button {
+    font-size: 0.95rem;
+  }
+}
+
+// Smaller mobile screens
+@media (max-width: $breakpoint-small-mobile) {
+  .navbar {
+    padding: $navbar-padding-vertical 0.5rem;
+    height: ($navbar-height * 0.9);
+    grid-template-columns: minmax(auto, 40px) auto; // Constrain logo width
+  }
+
+  .cv-button {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+    white-space: nowrap; // Prevent button text from wrapping
+  }
+
+  .navbar-logo .logo-svg {
+    width: ($logo-width * 0.85);
+    height: ($logo-height * 0.85);
+  }
+}
+
+// iPhone specific adjustments
+@media (max-width: $breakpoint-iphone) {
+  .navbar {
+    padding: $navbar-padding-vertical 0.4rem;
+  }
+
+  .cv-button {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.45rem;
+  }
+
+  .navbar-logo .logo-svg {
+    width: ($logo-width * 0.7);
+    height: ($logo-height * 0.7);
   }
 }

@@ -97,7 +97,7 @@ export default function Projects() {
           {/* <a href="#" className="project-link">▷</a> */}
         </div>
         {/* SVG Container */}
-        <div className="project-svg-container project-svg-right">
+        <div className="project-svg-container project-svg-right desktop-only-svg">
           <DecorativeSvg />
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function Projects() {
         data-aos-offset="50"
       >
         {/* SVG Container */}
-        <div className="project-svg-container project-svg-left">
+        <div className="project-svg-container project-svg-left desktop-only-svg">
           <DecorativeSvg />
         </div>
         {/* Project Card 2 */}

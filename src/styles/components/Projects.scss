@@ -140,6 +140,14 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   }
 }
 
+// Ensure anchor tag cards match div cards in styling
+a.project-card {
+  text-decoration: none;
+  color: $color-project-card-text;
+  display: flex;
+  flex-direction: column;
+}
+
 // --- Card Content Elements ---
 // No changes needed for title, description, tags wrappers usually
 
@@ -211,6 +219,10 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   }
 }
 
+.desktop-only-svg {
+  display: block; // Ensure it's visible on desktop
+}
+
 .projects-decorative-svg {
   // Target the SVG specifically within projects
   display: block;
@@ -276,43 +288,65 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
 
   .project-row {
     flex-direction: column;
-    margin-bottom: $project-row-gap * 0.7;
+    margin-bottom: $project-card-gap; // Use consistent spacing
     align-items: center; // Center items horizontally when stacked
+    width: 100%;
+
+    &:last-child {
+      margin-bottom: 0; // No margin after last row
+    }
 
     &.project-row-svg-right,
     &.project-row-svg-left,
     &.project-row-double-card {
       justify-content: center;
       padding: 0;
-      gap: $project-card-gap * 1.5; // Increase gap slightly when stacked
+      gap: 0; // Remove gap since we'll use margin on cards
       align-items: center; // Ensure items are centered horizontally
+      width: 100%;
+    }
+
+    // Fix for row 3 which has two cards - stack them vertically
+    &.project-row-double-card {
+      .project-card {
+        margin-bottom: $project-card-gap;
+
+        &:last-child {
+          margin-bottom: 0; // No margin after last card
+        }
+      }
     }
   }
 
+  // Hide SVG containers completely on mobile - now using the class
+  .desktop-only-svg {
+    display: none; // Hide on mobile
+  }
+
+  // Base card styles for mobile
   .project-card {
     flex-basis: auto;
-    width: 90%; // Keep width constrained
-    max-width: 450px;
-    margin: 0 auto;
+    width: 90% !important; // Force consistent width for all cards
+    max-width: 450px !important; // Force consistent max-width for all cards
+    margin: 0 auto; // Center cards horizontally
     height: auto; // Ensure height is auto when stacked
     justify-content: flex-start; // Reset justify-content when stacked
   }
 
-  .project-svg-container {
-    width: $project-svg-container-width-small; // Apply updated width
-    margin: 0 auto; // Center SVG (gap handles spacing)
+  // Make all cards in all rows have the exact same styling
+  .project-row-svg-right .project-card,
+  .project-row-svg-left .project-card,
+  .project-row-double-card .project-card {
+    box-sizing: border-box !important; // Force consistent box sizing
+    display: flex !important; // Force consistent display
+    flex-direction: column;
+    width: 90% !important; // Force consistent width
+    max-width: 450px !important; // Force consistent max-width
+  }
 
-    // Reset Negative Margins when stacked
-    .project-row-svg-right &,
-    .project-row-svg-left & {
-      margin-left: auto; // Reset margin
-      margin-right: auto; // Reset margin
-    }
-
-    // Order fix for stacked view (SVG first in DOM for row 2)
-    .project-row-svg-left & {
-      order: -1; // Move SVG visually above card when stacked
-    }
+  // Ensure all cards have the same padding
+  a.project-card {
+    padding: $project-card-padding !important; // Force consistent padding
   }
 }
 
@@ -322,20 +356,33 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   .projects-section {
     padding: ($project-row-gap * 0.5) $spacing-unit;
   }
+
   .project-row {
-    margin-bottom: $project-row-gap * 0.5;
+    margin-bottom: $project-card-gap;
   }
+
   .project-card {
-    width: 95%;
-    padding: $project-card-padding * 0.8;
+    width: 95% !important;
+    padding: $project-card-padding * 0.8 !important;
   }
+
+  // Make sure all cards have the same width on extra small screens
+  .project-row-svg-right .project-card,
+  .project-row-svg-left .project-card,
+  .project-row-double-card .project-card {
+    width: 95% !important;
+  }
+
+  // Ensure all cards have the same padding on extra small screens
+  a.project-card {
+    padding: $project-card-padding * 0.8 !important;
+  }
+
   .project-title {
     font-size: $font-size-project-title * 0.8;
   }
+
   .project-description {
     font-size: $font-size-project-desc * 0.9;
-  }
-  .project-svg-container {
-    width: $project-svg-container-width-xsmall; // Apply updated width
   }
 }
