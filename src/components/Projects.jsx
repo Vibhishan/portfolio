@@ -164,7 +164,7 @@ export default function Projects() {
             <span className="tag tag-tech">PostgreSQL</span>
           </div>
           <p className="project-description">
-            Backend code for BookMyShow clone, and online movie ticket booking
+            Backend code for BookMyShow clone, an online movie ticket booking
             website.
           </p>
           {/* Optional: Link/Indicator */}
@@ -186,7 +186,7 @@ export default function Projects() {
             <span className="tag tag-tech">Java</span>
           </div>
           <p className="project-description">
-            A CLI-only TicTacToe game focussed on design patterns.
+            A CLI-only TicTacToe game focused on design patterns.
           </p>
           {/* Optional: Link/Indicator */}
           {/* <a href="#" className="project-link">▷</a> */}

@@ -46,6 +46,7 @@ $breakpoint-iphone: 390px; // iPhone 12/14 Pro width
   width: 100%;
   box-sizing: border-box;
   overflow-x: hidden; // Prevent horizontal scrolling
+  animation: navbarFadeSlide 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // --- Logo Styles ---
@@ -86,7 +87,7 @@ $breakpoint-iphone: 390px; // iPhone 12/14 Pro width
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all $transition-duration $transition-timing;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   letter-spacing: 0.5px;
   outline: none;
 
@@ -97,7 +98,7 @@ $breakpoint-iphone: 390px; // iPhone 12/14 Pro width
   }
 
   &:active {
-    transform: translateY(0);
+    transform: scale(0.96);
   }
 }
 
@@ -168,5 +169,16 @@ $breakpoint-iphone: 390px; // iPhone 12/14 Pro width
   .navbar-logo .logo-svg {
     width: ($logo-width * 0.7);
     height: ($logo-height * 0.7);
+  }
+}
+
+@keyframes navbarFadeSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
