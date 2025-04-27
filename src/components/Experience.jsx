@@ -6,26 +6,17 @@ const LongArrowSvg = () => {
   return (
     <svg
       className="long-arrow-svg"
-      viewBox="0 0 1000 20" // Keeping viewBox, adjust if stroke/head size changes significantly
+      width="100%"
+      height="94"
+      viewBox="0 0 1561 94"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      preserveAspectRatio="none" // Allow it to stretch horizontally
     >
-      {/* Arrow Line - stretches */}
-      <line
-        x1="0" // Start from left edge
-        y1="10" // Vertical center
-        x2="990" // End just before arrowhead
-        y2="10" // Vertical center
-        stroke="currentColor"
-        strokeWidth="2" // Match desired line thickness
-      />
-      {/* Arrow Head (Right Pointing) */}
-      <polyline
-        points="990,0 1000,10 990,20" // Points for the right-pointing arrowhead
-        stroke="currentColor"
-        strokeWidth="2" // Match line thickness
-        fill="none" // No fill for the head
+      <path d="M-0.00488281 47H1556.17" stroke="black" stroke-width="6.24593" />
+      <path
+        d="M1555.92 46.9598L1517.48 8.51953L1517.44 85.4398L1555.92 46.9598Z"
+        stroke="black"
+        stroke-width="6.62693"
       />
     </svg>
   );

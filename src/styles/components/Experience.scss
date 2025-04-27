@@ -9,9 +9,9 @@ $color-text-main: #000000;
 $color-arrow: $color-text-main; // Color for the long arrow
 
 // Font Sizes
-$font-size-experience-title: 1.1rem;
-$font-size-experience-company: 1rem;
-$font-size-experience-dates: 0.9rem;
+$font-size-experience-title: 1.35rem;
+$font-size-experience-company: 1.15rem;
+$font-size-experience-dates: 1rem;
 
 // Font Weights
 $font-weight-bold: 700;
@@ -22,12 +22,12 @@ $font-weight-medium: 500;
 $spacing-unit: 1rem;
 $experience-section-padding-y: 8 * $spacing-unit;
 $experience-section-padding-x: 5%;
-$timeline-content-gap: 1.5 * $spacing-unit; // Vertical gap between arrow and content
+$timeline-content-gap: 2.5 * $spacing-unit; // Increased vertical gap between arrow and content
 $stacked-point-gap: 4 * $spacing-unit;
 
 // Arrow Style
-$arrow-height: 20px; // Corresponds to viewBox height of LongArrowSvg
-$arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
+$arrow-height: 94px; // Updated to match the SVG viewBox height
+$arrow-line-thickness: 6px; // Increased thickness to match the SVG stroke-width
 
 // --- Experience Section Styles ---
 .experience-section {
@@ -47,11 +47,9 @@ $arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
   // Use Flexbox to distribute points horizontally
   display: flex;
   justify-content: space-between;
-  // --- Removed vertical padding ---
-  // padding-top: calc(#{$arrow-height / 2} + #{$timeline-content-gap});
-  // padding-bottom: calc(#{$arrow-height / 2} + #{$timeline-content-gap});
   // Add padding to ensure arrow isn't cut off if it has thickness/height
-  padding: ($arrow-height / 2) 0;
+  padding: ($arrow-height * 0.7) 0; // Increased padding to accommodate larger arrow
+  margin: 3rem 0; // Add vertical margin for better spacing
 }
 
 // --- Long Arrow Container & SVG ---
@@ -64,7 +62,7 @@ $arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
   height: $arrow-height; // Give container height for positioning SVG
   z-index: 0; // Behind content
   pointer-events: none; // Prevent arrow from interfering with interactions
-  padding: 0 $spacing-unit * 2; // Match horizontal padding of points if needed
+  padding: 0 $spacing-unit; // Reduced horizontal padding to allow more arrow width
   box-sizing: border-box;
 }
 
@@ -133,6 +131,7 @@ $arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
 .experience-dates {
   font-size: $font-size-experience-dates;
   font-weight: $font-weight-regular;
+  font-style: italic;
   color: darken($color-text-main, 20%);
   margin: 0;
 }
@@ -144,9 +143,23 @@ $arrow-line-thickness: 2px; // Corresponds to strokeWidth in LongArrowSvg
     padding: ($experience-section-padding-y * 0.6) $spacing-unit;
   }
 
+  // Font size adjustments for mobile
+  .experience-title {
+    font-size: $font-size-experience-title * 0.9;
+  }
+
+  .experience-company {
+    font-size: $font-size-experience-company * 0.9;
+  }
+
+  .experience-dates {
+    font-size: $font-size-experience-dates * 0.9;
+  }
+
   .timeline-container-long-arrow {
     display: block; // Stack points vertically
     padding: 0; // Reset padding
+    margin: 1.5rem 0;
   }
 
   .long-arrow-container {
