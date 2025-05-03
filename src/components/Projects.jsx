@@ -1,12 +1,11 @@
-import React from "react";
-import "../styles/components/Projects.scss"; // Make sure to create/update this file
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import "../styles/components/Projects.scss";
 
-// Replicated SVG component (Consider importing from a shared location)
+// Replicated SVG component
 const DecorativeSvg = () => (
   <svg
-    // Using the same class as in Introduction for potential reuse,
-    // but might need specific overrides or a new class for Projects section styling.
-    className="intro-decorative-svg projects-decorative-svg" // Added specific class for projects
+    className="intro-decorative-svg projects-decorative-svg"
     viewBox="0 0 359 525"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -57,22 +56,47 @@ const DecorativeSvg = () => (
 );
 
 export default function Projects() {
+  const sectionRef = useRef(null);
+  const row1Ref = useRef(null);
+  const row2Ref = useRef(null);
+  const row3Ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (row1Ref.current) observer.observe(row1Ref.current);
+    if (row2Ref.current) observer.observe(row2Ref.current);
+    if (row3Ref.current) observer.observe(row3Ref.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (row1Ref.current) observer.unobserve(row1Ref.current);
+      if (row2Ref.current) observer.unobserve(row2Ref.current);
+      if (row3Ref.current) observer.unobserve(row3Ref.current);
+    };
+  }, []);
+
   return (
     // Main container for the projects section
-    <section
-      className="projects-section"
-      data-aos="fade-up"
-      data-aos-duration="500"
-    >
+    <section className="projects-section" ref={sectionRef}>
       {/* Row 1: Project Card Left, SVG Right */}
-      <div
-        className="project-row project-row-svg-right"
-        data-aos="fade-up"
-        data-aos-duration="200"
-        data-aos-offset="50"
-      >
+      <div className="project-row project-row-svg-right" ref={row1Ref}>
         {/* Project Card 1 */}
-        <div className="project-card project-card-1">
+        <Link to="/hangman" className="project-card project-card-1">
           <h3 className="project-title">Hangman</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
@@ -93,9 +117,8 @@ export default function Projects() {
             revealed. If the letter is not in the word, the player will lose a
             life.
           </p>
-          {/* Optional: Link/Indicator */}
-          {/* <a href="#" className="project-link">▷</a> */}
-        </div>
+          <div className="project-link-indicator">View Project →</div>
+        </Link>
         {/* SVG Container */}
         <div className="project-svg-container project-svg-right desktop-only-svg">
           <DecorativeSvg />
@@ -103,18 +126,13 @@ export default function Projects() {
       </div>
 
       {/* Row 2: SVG Left, Project Card Right */}
-      <div
-        className="project-row project-row-svg-left"
-        data-aos="fade-up"
-        data-aos-duration="200"
-        data-aos-offset="50"
-      >
+      <div className="project-row project-row-svg-left" ref={row2Ref}>
         {/* SVG Container */}
         <div className="project-svg-container project-svg-left desktop-only-svg">
           <DecorativeSvg />
         </div>
         {/* Project Card 2 */}
-        <div className="project-card project-card-2">
+        <Link to="/minimal-sketch" className="project-card project-card-2">
           <h3 className="project-title">Minimal Sketch</h3>
           {/* Tags for status/category */}
           <div className="project-tags project-tags-status">
@@ -134,18 +152,12 @@ export default function Projects() {
             online multiplayer pictionary game. Compete against your friends to
             see who can guess the word the fastest.
           </p>
-          {/* Optional: Link/Indicator */}
-          {/* <a href="#" className="project-link">▷</a> */}
-        </div>
+          <div className="project-link-indicator">View Project →</div>
+        </Link>
       </div>
 
       {/* Row 3: Two Project Cards Side-by-Side */}
-      <div
-        className="project-row project-row-double-card"
-        data-aos="fade-up"
-        data-aos-duration="200"
-        data-aos-offset="50"
-      >
+      <div className="project-row project-row-double-card" ref={row3Ref}>
         {/* Project Card 3 */}
         <a
           href="https://github.com/Vibhishan/bookmyshow-design"
@@ -167,8 +179,6 @@ export default function Projects() {
             Backend code for BookMyShow clone, an online movie ticket booking
             website.
           </p>
-          {/* Optional: Link/Indicator */}
-          {/* <a href="#" className="project-link">▷</a> */}
         </a>
         {/* Project Card 4 */}
         <a
@@ -188,8 +198,6 @@ export default function Projects() {
           <p className="project-description">
             A CLI-only TicTacToe game focused on design patterns.
           </p>
-          {/* Optional: Link/Indicator */}
-          {/* <a href="#" className="project-link">▷</a> */}
         </a>
       </div>
     </section>

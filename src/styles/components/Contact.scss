@@ -396,3 +396,28 @@ $svg-background-width: 100vw; // Make SVG wider than viewport
     margin-top: $spacing-unit; // Further reduced spacing
   }
 }
+
+// For Intersection Observer animations
+.contact-section,
+.contact-content-container,
+.contact-details,
+.contact-form {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+// Animation for fade in
+.animate-fade-in {
+  animation: fadeInAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -49,6 +49,8 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   overflow: hidden; // Clip overflowing SVGs
   box-sizing: border-box;
   position: relative; // Good practice when children are positioned/transformed
+  opacity: 0;
+  will-change: opacity, transform;
 }
 
 // --- Project Row Styles ---
@@ -58,6 +60,8 @@ $project-svg-overlap-percentage: 55%; // Set overlap percentage
   margin-bottom: $project-row-gap; // Space between rows
   width: 100%;
   box-sizing: border-box;
+  opacity: 0;
+  will-change: opacity, transform;
 
   &:last-child {
     margin-bottom: 0; // No margin after the last row
@@ -385,4 +389,41 @@ a.project-card {
   .project-description {
     font-size: $font-size-project-desc * 0.9;
   }
+}
+
+.project-link-indicator {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  align-self: flex-end;
+  transition: transform 0.2s ease;
+  opacity: 0.85;
+
+  .project-card:hover & {
+    transform: translateX(4px);
+    opacity: 1;
+  }
+}
+
+// Add CSS animation for Intersection Observer
+.animate-fade-in {
+  animation: fadeInAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Default state before animation
+.projects-section,
+.project-row {
+  opacity: 0;
+  will-change: opacity, transform;
 }

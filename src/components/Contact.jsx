@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "../styles/components/Contact.scss"; // Ensure this SCSS file exists
 
 // SVG Component (Consider making this reusable if used elsewhere)
@@ -494,9 +494,53 @@ const BackgroundPatternSvg = () => (
 );
 
 export default function Contact() {
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
+  const detailsRef = useRef(null);
+  const formRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fade-in");
+
+            // Add delay for nested elements
+            if (entry.target === contentRef.current) {
+              setTimeout(() => {
+                if (detailsRef.current)
+                  detailsRef.current.classList.add("animate-fade-in");
+              }, 150);
+
+              setTimeout(() => {
+                if (formRef.current)
+                  formRef.current.classList.add("animate-fade-in");
+              }, 300);
+            }
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (contentRef.current) observer.observe(contentRef.current);
+
+    return () => {
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
+      if (contentRef.current) observer.unobserve(contentRef.current);
+    };
+  }, []);
+
   return (
     // Main section container
-    <section className="contact-section" id="contact">
+    <section className="contact-section" ref={sectionRef}>
       {/* Background SVG Layer */}
       <div className="contact-background">
         {/* <BackgroundPatternSvg /> */}
@@ -508,7 +552,7 @@ export default function Contact() {
       </div>
 
       {/* Main Content Container (Overlay) */}
-      <div className="contact-content-container" data-aos="fade-up">
+      <div className="contact-content-container" ref={contentRef}>
         <h2 className="contact-title">Contact</h2>
         <h3 className="contact-subtitle">
           I'm always looking for new opportunities to learn and grow. If you'd
@@ -516,7 +560,7 @@ export default function Contact() {
           create something amazing together.
         </h3>
 
-        <div className="contact-details" data-aos="fade-up" data-aos-delay="20">
+        <div className="contact-details" ref={detailsRef}>
           {" "}
           {/* Make email a mailto link */}
           <a href="mailto:hello@vibhishanranga.com" className="contact-email">
@@ -598,10 +642,7 @@ export default function Contact() {
       </div>
 
       {/* Footer Container */}
-      <footer
-        className="contact-footer"
-        data-aos="fade-up"
-      >
+      <footer className="contact-footer">
         <p className="footer-text">
           {/* Example Footer Text */}
           Designed by{" "}

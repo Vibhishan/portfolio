@@ -235,3 +235,27 @@ $arrow-line-thickness: 6px; // Increased thickness to match the SVG stroke-width
     }
   }
 }
+
+// For Intersection Observer animations
+.experience-section,
+.timeline-container-long-arrow,
+.timeline-point {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+// Animation for fade in
+.animate-fade-in {
+  animation: fadeInAnimation 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
