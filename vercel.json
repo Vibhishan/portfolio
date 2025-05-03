@@ -1,4 +1,41 @@
 {
+  "redirects": [
+    { 
+      "source": "/bookmyshow-backend", 
+      "destination": "https://github.com/Vibhishan/bookmyshow-backend",
+      "permanent": false
+    },
+    { 
+      "source": "/bookmyshow-design", 
+      "destination": "https://github.com/Vibhishan/bookmyshow-design",
+      "permanent": false
+    },
+    { 
+      "source": "/tictactoe-design", 
+      "destination": "https://github.com/Vibhishan/tictactoe-design",
+      "permanent": false
+    },
+    { 
+      "source": "/hangman-frontend", 
+      "destination": "https://github.com/Vibhishan/hangman-frontend",
+      "permanent": false
+    },
+    { 
+      "source": "/hangman-backend", 
+      "destination": "https://github.com/Vibhishan/hangman-backend",
+      "permanent": false
+    },
+    { 
+      "source": "/minimal-sketch-frontend", 
+      "destination": "https://github.com/Vibhishan/minimal-sketch-frontend",
+      "permanent": false
+    },
+    { 
+      "source": "/minimal-sketch-backend", 
+      "destination": "https://github.com/Vibhishan/minimal-sketch-backend",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
