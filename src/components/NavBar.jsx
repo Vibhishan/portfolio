@@ -43,7 +43,7 @@ export default function NavBar() {
       </div>
       <div className="navbar-cv">
         <a
-          href="/assets/Vibhishan_Ranga_Resume_Web.pdf"
+          href="/assets/Vibhishan_Ranga_CV_Web.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="cv-button"
